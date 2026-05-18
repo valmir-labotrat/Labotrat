@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#b450c8">
+<title>Catálogo Labotrat — Pedido de Compra | Valmir Batista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#b450c8;
+  --primary-dark:#8e2ea3;
+  --primary-light:#e9b8f3;
+  --primary-soft:#fdf5ff;
+  --accent:#ff6ec4;
+  --whatsapp:#25D366;
+  --whatsapp-dark:#128C7E;
+  --ink:#1e1226;
+  --ink-soft:#5a4866;
+  --line:#ecdef0;
+  --bg:#fbf7fd;
+  --white:#ffffff;
+  --success:#10b981;
+  --danger:#ef4444;
+  --warning:#f59e0b;
+  --radius:14px;
+  --radius-sm:10px;
+  --shadow:0 4px 16px rgba(180,80,200,.10);
+  --shadow-lg:0 10px 30px rgba(180,80,200,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:inherit;font-size:1rem}
+
+/* ===== HEADER ===== */
+.topbar{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);color:#fff;padding:8px 16px;font-size:.78rem;text-align:center;letter-spacing:.3px}
+.topbar strong{font-weight:600}
+header.main{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.header-inner{max-width:1280px;margin:0 auto;padding:14px 20px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:48px;width:auto;user-select:none;pointer-events:none}
+.brand-text{display:flex;flex-direction:column;line-height:1.1}
+.brand-text .label{font-size:.7rem;color:var(--ink-soft);font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.brand-text .name{font-size:1.15rem;font-weight:700;color:var(--primary);letter-spacing:-.3px}
+.rep-info{display:flex;flex-direction:column;align-items:flex-end;gap:2px;line-height:1.2}
+.rep-info .rep-name{font-size:.78rem;color:var(--ink-soft);font-weight:500}
+.rep-info .rep-name strong{color:var(--ink);font-weight:600}
+.rep-info .rep-phone{font-size:.95rem;font-weight:700;color:var(--primary);text-decoration:none}
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:var(--whatsapp);color:#fff;padding:10px 16px;border-radius:50px;font-weight:600;text-decoration:none;font-size:.88rem;transition:all .2s;box-shadow:0 4px 12px rgba(37,211,102,.3)}
+.wa-btn:hover{background:var(--whatsapp-dark);transform:translateY(-2px);box-shadow:0 6px 16px rgba(37,211,102,.4)}
+.wa-btn svg{width:18px;height:18px;fill:currentColor}
+.admin-link{position:absolute;top:10px;right:10px;font-size:.7rem;color:rgba(255,255,255,.6);text-decoration:none;padding:4px 8px;border-radius:4px;transition:.2s}
+.admin-link:hover{color:#fff;background:rgba(0,0,0,.15)}
+
+/* ===== HERO ===== */
+.hero{max-width:1280px;margin:0 auto;padding:28px 20px 12px;text-align:center}
+.hero h1{font-size:1.95rem;font-weight:800;color:var(--ink);margin-bottom:8px;letter-spacing:-.5px}
+.hero h1 span{background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--ink-soft);font-size:.98rem;max-width:680px;margin:0 auto}
+.hero-info{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px}
+.hero-info .pill{background:var(--white);border:1px solid var(--line);padding:8px 14px;border-radius:50px;font-size:.78rem;font-weight:500;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px;box-shadow:var(--shadow)}
+.hero-info .pill::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--primary)}
+.hero-info .pill-min{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border-color:transparent;font-weight:700;box-shadow:0 4px 10px rgba(180,80,200,.3)}
+.hero-info .pill-min::before{background:#fff}
+
+/* ====== PEDIDO MÍNIMO ====== */
+.min-progress{margin:14px 0 4px;background:#fff;border-radius:var(--radius-sm);padding:12px 14px;border:1.5px solid var(--line)}
+.min-progress.met{border-color:var(--success);background:#f0fdf4}
+.min-progress.near{border-color:var(--warning);background:#fffbeb}
+.min-progress.below{border-color:var(--danger);background:#fef2f2}
+.min-progress-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:.85rem;font-weight:600}
+.min-progress-head .label{color:var(--ink-soft)}
+.min-progress.met .label{color:var(--success)}
+.min-progress.near .label{color:#92410a}
+.min-progress.below .label{color:var(--danger)}
+.min-progress-head .pct{font-size:.78rem;font-weight:700;color:var(--ink-soft)}
+.min-progress-bar{height:10px;background:#fff;border-radius:50px;overflow:hidden;border:1px solid var(--line);position:relative}
+.min-progress-fill{height:100%;background:linear-gradient(90deg,var(--danger),var(--warning));border-radius:50px;transition:width .35s ease,background .35s ease;min-width:2px}
+.min-progress.met .min-progress-fill{background:linear-gradient(90deg,var(--success),#34d399)}
+.min-progress.near .min-progress-fill{background:linear-gradient(90deg,var(--warning),#fbbf24)}
+.min-progress-msg{font-size:.78rem;margin-top:7px;font-weight:500}
+.min-progress.met .min-progress-msg{color:var(--success)}
+.min-progress.near .min-progress-msg{color:#92410a}
+.min-progress.below .min-progress-msg{color:var(--danger)}
+.warn-msg.error-msg{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+.warn-msg.error-msg::before{content:'🚫'}
+
+/* ===== SECTION ===== */
+.section{max-width:1280px;margin:0 auto;padding:24px 20px}
+.section-title{font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:22px;background:var(--primary);border-radius:2px}
+
+/* ===== CUSTOMER FORM ===== */
+.card{background:var(--white);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.82rem;font-weight:600;color:var(--ink)}
+.field label .req{color:var(--danger)}
+.field input{padding:11px 14px;border:1.5px solid var(--line);border-radius:var(--radius-sm);transition:border-color .15s,box-shadow .15s;background:#fff;color:var(--ink)}
+.field input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(180,80,200,.12)}
+.field input.error{border-color:var(--danger)}
+.field-hint{font-size:.72rem;color:var(--ink-soft);margin-top:2px}
+
+/* ===== FILTERS ===== */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;align-items:center;background:#fff;padding:14px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid var(--line);position:sticky;top:78px;z-index:50}
+.search-box{flex:1;min-width:220px;position:relative}
+.search-box input{width:100%;padding:11px 14px 11px 40px;border:1.5px solid var(--line);border-radius:var(--radius-sm);background:#fff}
+.search-box input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(180,80,200,.12)}
+.search-box::before{content:'🔍';position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.5;font-size:.95rem}
+.filter-chips{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{padding:7px 13px;border-radius:50px;background:#fff;border:1.5px solid var(--line);font-size:.78rem;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:.15s;white-space:nowrap}
+.chip:hover{border-color:var(--primary-light);color:var(--primary)}
+.chip.active{background:var(--primary);color:#fff;border-color:var(--primary);box-shadow:0 3px 8px rgba(180,80,200,.3)}
+.chip .count{margin-left:5px;opacity:.7;font-weight:500}
+
+/* ===== PRODUCT GRID ===== */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.product{background:#fff;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);transition:all .2s;display:flex;flex-direction:column;position:relative}
+.product:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:var(--primary-light)}
+.product.has-qty{border-color:var(--primary);box-shadow:0 0 0 2px rgba(180,80,200,.15),var(--shadow)}
+.product-img{aspect-ratio:1/1;background:linear-gradient(135deg,var(--primary-soft),#fff);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;user-select:none}
+.product-img img{width:100%;height:100%;object-fit:contain;padding:14px;pointer-events:none;-webkit-user-drag:none}
+.product-img .placeholder{text-align:center;padding:18px;color:var(--primary);font-weight:700}
+.product-img .placeholder .line-tag{font-size:.7rem;font-weight:600;color:var(--ink-soft);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+.product-img .placeholder .code{font-size:2.2rem;font-weight:800;letter-spacing:-1px;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.product-img .placeholder .icon{font-size:2.5rem;margin-bottom:6px;opacity:.7}
+.line-badge{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.95);backdrop-filter:blur(4px);padding:4px 10px;border-radius:50px;font-size:.68rem;font-weight:700;color:var(--primary);letter-spacing:.3px;text-transform:uppercase;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.qty-badge{position:absolute;top:10px;right:10px;background:var(--primary);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;box-shadow:0 4px 10px rgba(180,80,200,.4)}
+.product-body{padding:14px 14px 16px;flex:1;display:flex;flex-direction:column;gap:8px;user-select:none}
+.product-name{font-size:.92rem;font-weight:600;color:var(--ink);line-height:1.3;min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-meta{display:flex;justify-content:space-between;align-items:center;font-size:.7rem;color:var(--ink-soft);font-weight:500;border-top:1px dashed var(--line);padding-top:8px}
+.product-meta .ean{font-family:'Courier New',monospace;letter-spacing:.3px}
+.product-meta .codigo{font-weight:700;color:var(--primary)}
+.price-row{display:flex;justify-content:space-between;align-items:baseline}
+.price{font-size:1.25rem;font-weight:800;color:var(--ink);letter-spacing:-.5px}
+.price small{font-size:.7rem;font-weight:500;color:var(--ink-soft)}
+.box-info{font-size:.72rem;color:var(--primary-dark);background:var(--primary-soft);padding:3px 8px;border-radius:50px;font-weight:600}
+
+/* ===== QUANTITY CONTROL ===== */
+.qty-control{display:flex;align-items:center;gap:0;background:var(--bg);border-radius:var(--radius-sm);overflow:hidden;border:1.5px solid var(--line);transition:border-color .15s}
+.qty-control:focus-within{border-color:var(--primary)}
+.qty-control button{width:38px;height:38px;background:#fff;color:var(--primary);font-weight:700;font-size:1.1rem;transition:.15s;display:flex;align-items:center;justify-content:center}
+.qty-control button:hover:not(:disabled){background:var(--primary);color:#fff}
+.qty-control button:disabled{opacity:.3;cursor:not-allowed}
+.qty-control input{flex:1;border:none;background:transparent;text-align:center;font-weight:700;color:var(--ink);font-size:1rem;width:100%;padding:0;min-width:0}
+.qty-control input:focus{outline:none}
+.qty-control input::-webkit-outer-spin-button,.qty-control input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.qty-control input[type=number]{-moz-appearance:textfield}
+.qty-subtotal{font-size:.78rem;color:var(--primary-dark);font-weight:700;text-align:right;margin-top:4px;min-height:1.1em}
+
+/* ===== CART FAB & SUMMARY ===== */
+.cart-fab{position:fixed;bottom:20px;right:20px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:14px 22px;border-radius:50px;box-shadow:0 8px 24px rgba(180,80,200,.4);z-index:80;display:flex;align-items:center;gap:12px;font-weight:600;cursor:pointer;transition:all .25s;opacity:0;pointer-events:none;transform:translateY(20px)}
+.cart-fab.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
+.cart-fab:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(180,80,200,.5)}
+.cart-fab .count{background:#fff;color:var(--primary);min-width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;padding:0 8px}
+
+/* ===== SUMMARY SECTION ===== */
+.summary{background:linear-gradient(135deg,#fff 0%,var(--primary-soft) 100%);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-lg);border:2px solid var(--primary-light);margin-top:20px}
+.summary h2{font-size:1.35rem;color:var(--primary-dark);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.summary-rows{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.summary-row{display:flex;justify-content:space-between;font-size:.92rem;color:var(--ink-soft)}
+.summary-row.total{padding-top:14px;border-top:2px dashed var(--primary-light);font-size:1.4rem;font-weight:800;color:var(--ink)}
+.summary-row.total .value{color:var(--primary-dark)}
+.summary-items{max-height:240px;overflow-y:auto;background:#fff;border-radius:var(--radius-sm);padding:8px;border:1px solid var(--line);margin-bottom:18px}
+.summary-items::-webkit-scrollbar{width:6px}
+.summary-items::-webkit-scrollbar-thumb{background:var(--primary-light);border-radius:3px}
+.summary-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;padding:8px 10px;font-size:.82rem;border-bottom:1px solid var(--line);align-items:center}
+.summary-item:last-child{border-bottom:none}
+.summary-item .qty{background:var(--primary);color:#fff;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:700;min-width:38px;text-align:center}
+.summary-item .name{color:var(--ink);font-weight:500}
+.summary-item .sub{font-weight:700;color:var(--ink)}
+.summary-empty{text-align:center;color:var(--ink-soft);padding:30px 10px;font-style:italic}
+
+.action-buttons{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{padding:14px 20px;border-radius:var(--radius-sm);font-weight:700;font-size:.95rem;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;text-decoration:none;white-space:nowrap}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-wa{background:var(--whatsapp);color:#fff;box-shadow:0 4px 12px rgba(37,211,102,.3)}
+.btn-wa:hover:not(:disabled){background:var(--whatsapp-dark);transform:translateY(-2px);box-shadow:0 6px 16px rgba(37,211,102,.4)}
+.btn-email{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:0 4px 12px rgba(180,80,200,.3)}
+.btn-email:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 6px 16px rgba(180,80,200,.4)}
+.btn svg{width:20px;height:20px;fill:currentColor}
+.btn-clear{background:#fff;color:var(--danger);border:1.5px solid var(--line);padding:10px 16px;font-size:.85rem;font-weight:600;border-radius:var(--radius-sm);margin-top:10px;width:100%}
+.btn-clear:hover{background:#fef2f2;border-color:var(--danger)}
+
+.warn-msg{background:#fff8e6;color:#92410a;border:1px solid #fde68a;border-radius:var(--radius-sm);padding:10px 14px;font-size:.85rem;margin-bottom:14px;display:flex;align-items:flex-start;gap:8px}
+.warn-msg::before{content:'⚠️';flex-shrink:0}
+
+/* ===== FOOTER ===== */
+footer{background:linear-gradient(135deg,var(--ink) 0%,#3a1d4a 100%);color:#fff;padding:36px 20px 20px;margin-top:50px;text-align:center}
+footer .foot-inner{max-width:900px;margin:0 auto}
+footer h3{font-size:1.15rem;margin-bottom:14px;color:#fff}
+footer p{font-size:.85rem;color:rgba(255,255,255,.75);margin-bottom:6px}
+footer .foot-contact{display:flex;justify-content:center;flex-wrap:wrap;gap:18px;margin:18px 0}
+footer .foot-contact a{color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:7px;font-weight:500;font-size:.88rem;padding:9px 16px;border-radius:50px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);transition:.2s}
+footer .foot-contact a:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+footer .copy{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+
+/* ===== MODAL (Admin) ===== */
+.modal-bg{position:fixed;inset:0;background:rgba(30,18,38,.7);backdrop-filter:blur(4px);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bg.open{display:flex}
+.modal{background:#fff;border-radius:var(--radius);max-width:560px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 25px 60px rgba(0,0,0,.4)}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.modal-header h2{font-size:1.2rem;color:var(--primary-dark);display:flex;align-items:center;gap:8px}
+.modal-close{font-size:1.5rem;color:var(--ink-soft);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s}
+.modal-close:hover{background:var(--line);color:var(--ink)}
+.modal-body{padding:24px}
+.modal-body p{font-size:.9rem;color:var(--ink-soft);margin-bottom:12px}
+.modal-body .field{margin-bottom:14px}
+.btn-primary{background:var(--primary);color:#fff;width:100%;padding:12px 18px;border-radius:var(--radius-sm);font-weight:700}
+.btn-primary:hover{background:var(--primary-dark)}
+.admin-panel{margin-top:16px;padding:16px;border:2px dashed var(--primary-light);border-radius:var(--radius-sm);background:var(--primary-soft)}
+.admin-panel h3{font-size:.95rem;color:var(--primary-dark);margin-bottom:8px}
+.admin-panel input[type=file]{margin-top:8px;width:100%;padding:8px;border:1.5px solid var(--line);border-radius:var(--radius-sm);background:#fff;font-size:.85rem}
+.admin-status{font-size:.78rem;color:var(--success);margin-top:6px;display:none}
+.admin-status.show{display:block}
+.admin-status.err{color:var(--danger)}
+.admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.admin-stat{background:#fff;padding:10px;border-radius:var(--radius-sm);text-align:center;border:1px solid var(--line)}
+.admin-stat .num{font-size:1.3rem;font-weight:800;color:var(--primary)}
+.admin-stat .lbl{font-size:.7rem;color:var(--ink-soft);font-weight:500}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:#fff;padding:12px 22px;border-radius:50px;font-size:.88rem;font-weight:500;z-index:300;opacity:0;transition:all .3s;box-shadow:0 8px 20px rgba(0,0,0,.3);max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:var(--success)}
+.toast.error{background:var(--danger)}
+
+/* ===== UTILS ===== */
+.no-select{user-select:none;-webkit-user-select:none}
+.empty-products{text-align:center;padding:60px 20px;color:var(--ink-soft)}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .topbar{font-size:.7rem;padding:6px 12px}
+  .header-inner{grid-template-columns:1fr auto;gap:10px;padding:10px 14px}
+  .rep-info{display:none}
+  .brand img{height:38px}
+  .brand-text .name{font-size:1rem}
+  .brand-text .label{font-size:.62rem}
+  .wa-btn{padding:8px 12px;font-size:.78rem}
+  .wa-btn svg{width:16px;height:16px}
+  .hero{padding:20px 14px 8px}
+  .hero h1{font-size:1.45rem}
+  .hero p{font-size:.85rem}
+  .section{padding:18px 14px}
+  .products-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+  .product-img .placeholder .code{font-size:1.5rem}
+  .product-name{font-size:.82rem;min-height:2.4em}
+  .price{font-size:1.05rem}
+  .action-buttons{grid-template-columns:1fr}
+  .toolbar{top:62px;padding:10px}
+  .cart-fab{bottom:14px;right:14px;padding:11px 18px;font-size:.85rem}
+  .qty-control button{width:32px;height:32px}
+  .summary{padding:18px 16px}
+  .form-grid{grid-template-columns:1fr}
+}
+@media print{
+  .topbar,header.main,.toolbar,.cart-fab,.action-buttons,.btn-clear,.admin-link,footer{display:none!important}
+  .product{break-inside:avoid}
+}
+
+/* Anti edition cues */
+.no-edit{-webkit-user-modify:read-only;user-select:none}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  🎁 <strong>Tabela Oficial Labotrat 2026.1</strong> — Venda em caixa fechada · <strong>Pedido mínimo de R$ 2.500,00</strong>
+</div>
+
+<header class="main">
+  <div class="header-inner">
+    <div class="brand">
+      <img src="https://images.tcdn.com.br/img/img_prod/1452860/1775650864_logo-rodape.png" alt="Labotrat" onerror="this.style.display='none'">
+      <div class="brand-text">
+        <span class="label">Catálogo Atacado</span>
+        <span class="name">Labotrat 2026.1</span>
+      </div>
+    </div>
+    <div class="rep-info">
+      <span class="rep-name">Representante <strong>Valmir Batista</strong></span>
+      <a href="tel:+5562998217459" class="rep-phone">(62) 99821-7459</a>
+    </div>
+    <a class="wa-btn" href="https://wa.me/5562998217459?text=Ol%C3%A1%20Valmir%2C%20vim%20pelo%20cat%C3%A1logo%20Labotrat" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24zM8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.4-.12-.56.12-.17.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Faça seu pedido <span>Labotrat</span> direto pelo catálogo</h1>
+  <p>Selecione os produtos, escolha a quantidade (em caixas fechadas) e envie seu pedido em segundos via WhatsApp ou e-mail. Atendimento exclusivo com Valmir Batista.</p>
+  <div class="hero-info">
+    <span class="pill">398 produtos</span>
+    <span class="pill">11 linhas</span>
+    <span class="pill">Tabela 2026.1</span>
+    <span class="pill">Caixa fechada</span>
+    <span class="pill pill-min">Pedido mínimo R$ 2.500,00</span>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Seus Dados</h2>
+  <div class="card">
+    <div class="form-grid">
+      <div class="field"><label>Nome do Comprador <span class="req">*</span></label><input type="text" id="f_nome" placeholder="Ex: Maria Silva" autocomplete="name"></div>
+      <div class="field"><label>Nome da Empresa <span class="req">*</span></label><input type="text" id="f_empresa" placeholder="Ex: Farmácia Boa Saúde" autocomplete="organization"></div>
+      <div class="field"><label>CNPJ <span class="req">*</span></label><input type="text" id="f_cnpj" placeholder="00.000.000/0000-00" maxlength="18"></div>
+      <div class="field"><label>Telefone <span class="req">*</span></label><input type="tel" id="f_telefone" placeholder="(00) 00000-0000" maxlength="15" autocomplete="tel"></div>
+      <div class="field"><label>E-mail <span class="req">*</span></label><input type="email" id="f_email" placeholder="seuemail@empresa.com" autocomplete="email"></div>
+      <div class="field"><label>Cidade / UF</label><input type="text" id="f_cidade" placeholder="Ex: Goiânia / GO"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Catálogo de Produtos</h2>
+  <div class="toolbar">
+    <div class="search-box">
+      <input type="search" id="search" placeholder="Buscar produto por nome, código ou EAN...">
+    </div>
+    <div class="filter-chips" id="lineFilters"></div>
+  </div>
+  <div id="productsGrid" class="products-grid"></div>
+  <div id="emptyState" class="empty-products" style="display:none">Nenhum produto encontrado com esse filtro.</div>
+</section>
+
+<section class="section">
+  <h2 class="section-title">Resumo do Pedido</h2>
+  <div class="summary">
+    <h2>📋 Itens selecionados</h2>
+    <div id="summaryItems" class="summary-items">
+      <div class="summary-empty">Adicione produtos ao pedido para ver o resumo aqui.</div>
+    </div>
+    <div class="summary-rows">
+      <div class="summary-row"><span>Itens distintos:</span><span id="sumItems">0</span></div>
+      <div class="summary-row"><span>Total de caixas:</span><span id="sumBoxes">0</span></div>
+      <div class="summary-row"><span>Total de unidades:</span><span id="sumUnits">0</span></div>
+      <div class="summary-row total"><span>TOTAL DO PEDIDO:</span><span class="value" id="sumTotal">R$ 0,00</span></div>
+    </div>
+    <div id="minProgress" class="min-progress below">
+      <div class="min-progress-head">
+        <span class="label" id="minLabel">Pedido mínimo: R$ 2.500,00</span>
+        <span class="pct" id="minPct">0%</span>
+      </div>
+      <div class="min-progress-bar"><div class="min-progress-fill" id="minFill" style="width:0%"></div></div>
+      <div class="min-progress-msg" id="minMsg">Adicione produtos para atingir o pedido mínimo de R$ 2.500,00</div>
+    </div>
+    <div id="formWarn" class="warn-msg" style="display:none">Preencha os dados da empresa antes de enviar o pedido.</div>
+    <div class="action-buttons">
+      <button class="btn btn-wa" id="btnWa" disabled>
+        <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24z"/></svg>
+        Enviar via WhatsApp
+      </button>
+      <button class="btn btn-email" id="btnEmail" disabled>
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Enviar por E-mail
+      </button>
+    </div>
+    <button class="btn-clear" id="btnClear">🗑️ Limpar pedido</button>
+  </div>
+</section>
+
+<button id="cartFab" class="cart-fab">
+  🛒 Ver pedido
+  <span class="count" id="fabCount">0</span>
+</button>
+
+<footer>
+  <div class="foot-inner">
+    <h3>Valmir Batista — Representante Comercial Labotrat</h3>
+    <p>Pedidos exclusivos para varejistas. Atendimento personalizado.</p>
+    <div class="foot-contact">
+      <a href="tel:+5562998217459">📞 (62) 99821-7459</a>
+      <a href="https://wa.me/5562998217459" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a href="mailto:valmir@9blue.com.br">✉️ valmir@9blue.com.br</a>
+      <a href="https://www.labotrat.com.br" target="_blank" rel="noopener">🌐 labotrat.com.br</a>
+    </div>
+    <p class="copy">© 2026 Labotrat — Catálogo de Pedidos Atacado · Tabela 2026.1 · Desenvolvido para Valmir Batista</p>
+    <a href="#" class="admin-link" id="adminTrigger">admin</a>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<!-- Admin Modal -->
+<div class="modal-bg" id="adminModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>🔐 Painel Administrativo</h2>
+      <button class="modal-close" id="modalClose">×</button>
+    </div>
+    <div class="modal-body" id="adminBody">
+      <div id="loginArea">
+        <p>Entre com a senha para acessar o painel administrativo.</p>
+        <div class="field"><label>Senha</label><input type="password" id="adminPass" placeholder="Digite a senha"></div>
+        <button class="btn-primary" id="btnLogin">Entrar</button>
+        <p class="field-hint" style="margin-top:14px">Senha padrão: <strong>labotrat2026</strong> (troque-a no código)</p>
+      </div>
+      <div id="panelArea" style="display:none">
+        <div class="admin-stats">
+          <div class="admin-stat"><div class="num" id="statProds">0</div><div class="lbl">Produtos</div></div>
+          <div class="admin-stat"><div class="num" id="statLines">0</div><div class="lbl">Linhas</div></div>
+          <div class="admin-stat"><div class="num" id="statPhotos">0</div><div class="lbl">Com foto</div></div>
+        </div>
+
+        <div class="admin-panel">
+          <h3>📊 Atualizar tabela de produtos (Excel)</h3>
+          <p style="font-size:.82rem;color:var(--ink-soft)">Suba uma nova versão da tabela Labotrat (.xlsx) para atualizar todos os produtos. O arquivo deve seguir o formato padrão Labotrat (Código na coluna B, EAN na C, Linha na D, Qt. Cx. na E, Descrição na F, Preço na H).</p>
+          <input type="file" id="excelInput" accept=".xlsx,.xls">
+          <div id="excelStatus" class="admin-status"></div>
+        </div>
+
+        <div class="admin-panel">
+          <h3>🖼️ Fazer upload de fotos (lote)</h3>
+          <p style="font-size:.82rem;color:var(--ink-soft)">Selecione várias fotos de uma vez. <strong>Nomeie cada foto com o código do produto</strong> (ex: 179.jpg, 183.png). O sistema vincula automaticamente.</p>
+          <input type="file" id="photosInput" accept="image/*" multiple>
+          <div id="photosStatus" class="admin-status"></div>
+        </div>
+
+        <div class="admin-panel">
+          <h3>💾 Exportar configuração</h3>
+          <p style="font-size:.82rem;color:var(--ink-soft)">Baixe um arquivo de backup com produtos + fotos para subir em outro servidor ou guardar.</p>
+          <button class="btn-primary" id="btnExport">⬇️ Baixar backup (.json)</button>
+          <input type="file" id="importInput" accept=".json" style="margin-top:10px">
+          <p style="font-size:.72rem;color:var(--ink-soft);margin-top:4px">Para restaurar: selecione um arquivo .json acima.</p>
+          <div id="importStatus" class="admin-status"></div>
+        </div>
+
+        <button class="btn-clear" id="btnReset" style="margin-top:14px">↻ Resetar para tabela padrão (apaga edições)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+// ====== PRODUTOS PADRÃO (embutidos) ======
+const PRODUTOS_PADRAO = [{"codigo":39,"ean":"7898632473070","linha":"Dermo Skin","qt_cx":12,"nome":"Amolecedor de Cravos e Espinhas Dermo Skin 50g","preco":18.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":235,"ean":"7898632472653","linha":"Dermo Skin","qt_cx":12,"nome":"Ativador de Crescimento Cílios e Sobrancelhas Dermo Skin 15g","preco":24.28,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1641,"ean":"7898632472318","linha":"Dermo Skin","qt_cx":12,"nome":"Clareador & Antimarcas Facial Gel Creme Dermo Skin 30g","preco":33.57,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":3677,"ean":"7898632476439","linha":"Dermo Skin","qt_cx":12,"nome":"Clareador Facial Concentrado Dermo Skin 15ml","preco":24.28,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1951,"ean":"7898632475531","linha":"Dermo Skin","qt_cx":12,"nome":"Cleansing Oil Dermo Removedor de Maquiagem Skin 110ml","preco":46.64,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1973,"ean":"7898632475548","linha":"Dermo Skin","qt_cx":12,"nome":"Creme Facial Avançado Retinol Dermo Skin 45g","preco":60.0,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1974,"ean":"7898632475555","linha":"Dermo Skin","qt_cx":12,"nome":"Creme Facial Avançado Ác. Glicólico Dermo Skin 45g","preco":60.0,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":251,"ean":"7898632474237","linha":"Dermo Skin","qt_cx":12,"nome":"Creme Inibidor de Pelos Dermo Skin 140ml","preco":60.0,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":32,"ean":"7898632474329","linha":"Dermo Skin","qt_cx":12,"nome":"Esfoliante Scrub Labial Dermo Skin 15g","preco":18.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":33,"ean":"7898632474312","linha":"Dermo Skin","qt_cx":12,"nome":"Espuma de Limpeza Labial Dermo Skin 50ml","preco":18.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1952,"ean":"7898632475524","linha":"Dermo Skin","qt_cx":12,"nome":"Fixador de Maquiagem Dermo Skin 110ml","preco":60.0,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":237,"ean":"7898632472844","linha":"Dermo Skin","qt_cx":12,"nome":"Gel Ultra Secativo de Espinhas e Antimarcas Dermo Skin 15g","preco":24.28,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":238,"ean":"7898632472868","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Facial Dupla Vitamina C15 Dermo Skin 30ml","preco":33.57,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":153,"ean":"7898632473063","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Facial Noturno Intensivo Dermo Skin 100g","preco":20.0,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":152,"ean":"7898632473049","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Facial Nutri Matte Dermo Skin 100g","preco":20.0,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":154,"ean":"7898632473056","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Facial Oil Control Gel Dermo Skin 100g","preco":20.0,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":3551,"ean":"7898632476118","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Cereja Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3645,"ean":"7898632476071","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Hibisco Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3549,"ean":"7898632476088","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Maracujá Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3553,"ean":"7898632476095","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Melancia Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3554,"ean":"7898632476101","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Morango Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3646,"ean":"7898632476125","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Pessego Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3550,"ean":"7898632476064","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Pistache Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3552,"ean":"7898632476132","linha":"Dermo Skin","qt_cx":12,"nome":"Hidratante Labial Pitaya Dia a Dia 10g","preco":11.42,"categoria":"Dia a Dia - Hidratantes Labiais","imagem":null},{"codigo":3679,"ean":"7898632476583","linha":"Dermo Skin","qt_cx":12,"nome":"Kit Clareador Axila & Virilha Dermo Skin c/ 2 Itens","preco":44.57,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":3678,"ean":"7898632476453","linha":"Dermo Skin","qt_cx":12,"nome":"Kit Clareador Facial Dermo Skin c/ 4 Itens","preco":68.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":201,"ean":"7898632473087","linha":"Dermo Skin","qt_cx":12,"nome":"Kit Facial Antiacne Dermo Skin c/ 3 Itens","preco":42.71,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":2007,"ean":"7898632475760","linha":"Dermo Skin","qt_cx":12,"nome":"Kit Facial Pele Sensível Dermo Skin c/ 3 Itens","preco":48.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":2012,"ean":"7898632475777","linha":"Dermo Skin","qt_cx":12,"nome":"Kit Facial Retinol Dermo Skin c/ 3 Itens","preco":62.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":202,"ean":"7898632473179","linha":"Dermo Skin","qt_cx":12,"nome":"Kit Facial Vitamina C Dermo Skin c/ 3 Itens","preco":48.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":2055,"ean":"7898632475753","linha":"Dermo Skin","qt_cx":12,"nome":"Kit Facial Ác. Glicólico Dermo Skin c/ 3 Itens","preco":48.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":236,"ean":"7898632472745","linha":"Dermo Skin","qt_cx":12,"nome":"Lip Gloss Boca Volumosa Dermo Skin 2,5g","preco":18.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":77,"ean":"7898632474435","linha":"Dermo Skin","qt_cx":12,"nome":"Multiprotetor Facial FPS50 Dermo Skin 50g","preco":36.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":113,"ean":"7898632473438","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Antiacne & Antioleosidade c/ Argila Verde Dermo Skin 130g","preco":18.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":115,"ean":"7898632473452","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Antiporosidade & Regeneradora c/ Argila Preta Dermo Skin 130g","preco":18.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":116,"ean":"7898632473445","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Antisinais & Esfoliante c/ Argila Vermelha Dermo Skin 130g","preco":18.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":117,"ean":"7898632473476","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Clareadora & Firmadora c/ Argila Branca Dermo Skin 130g","preco":18.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":112,"ean":"7898632473032","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Facial Efeito Lifiting Dermo Skin 50g","preco":18.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":110,"ean":"7898632472998","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Facial Peel Off Ouro Dermo Skin 60g","preco":12.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":111,"ean":"7898632472981","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Facial Peel Off Preta Dermo Skin 60g","preco":12.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":114,"ean":"7898632473469","linha":"Dermo Skin","qt_cx":12,"nome":"Máscara Iluminadora & Revitalizante c/ Argila Rosa Dermo Skin 130g","preco":18.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":3675,"ean":"7898632476446","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Esfoliante Clareador Dermo Skin 80ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":181,"ean":"7898632473025","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Esfoliante Facial Antiacne Dermo Skin 80ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":180,"ean":"7898632473018","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Esfoliante Facial Vitamina C Dermo Skin 80ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":177,"ean":"7898632472677","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Antiacne Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":182,"ean":"7898632473209","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Antiacne Dermo Skin 280ml","preco":20.71,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":3674,"ean":"7898632476415","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Clareador Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":3805,"ean":"7898632476422","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Clareador Dermo Skin 280ml","preco":20.71,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":178,"ean":"7898632472592","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Demaquilante Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1975,"ean":"7898632475371","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Pele Sensível Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1976,"ean":"7898632475388","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Pele Sensível Dermo Skin 280ml","preco":20.71,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":176,"ean":"7898632472691","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Primer Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1977,"ean":"7898632475395","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Retinol Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1978,"ean":"7898632475401","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Retinol Dermo Skin 280ml","preco":20.71,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":183,"ean":"7898632473193","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Vitamina C Dermo Skin 280ml","preco":20.71,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":179,"ean":"7898632472578","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Vitamiva C Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1979,"ean":"7898632475418","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Ác. Glicólico Dermo Skin 100ml","preco":12.14,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1980,"ean":"7898632475425","linha":"Dermo Skin","qt_cx":12,"nome":"Sabonete Facial Ác. Glicólico Dermo Skin 280ml","preco":20.71,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1637,"ean":"7898632471984","linha":"Dermo Skin","qt_cx":12,"nome":"Sérum Clareador Axila & Virilha Dermo Skin 30ml","preco":43.57,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1638,"ean":"7898632474190","linha":"Dermo Skin","qt_cx":12,"nome":"Sérum Clareador Axila & Virilha c/ Inibidor de Pelos Dermo Skin 30ml","preco":46.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1981,"ean":"7898632475432","linha":"Dermo Skin","qt_cx":12,"nome":"Sérum Facial Pele Sensível Dermo Skin 30ml","preco":33.57,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1982,"ean":"7898632475463","linha":"Dermo Skin","qt_cx":12,"nome":"Sérum Facial Retinol 0,3% Dermo Skin 30ml","preco":46.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1983,"ean":"7898632475517","linha":"Dermo Skin","qt_cx":12,"nome":"Sérum Facial Ác. Glicólico 7% Dermo Skin 30ml","preco":33.57,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":234,"ean":"7898632472295","linha":"Dermo Skin","qt_cx":12,"nome":"Sérum Firmador Anti-Age Vitamina C Dermo Skin 30ml","preco":33.57,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1642,"ean":"7898632472301","linha":"Dermo Skin","qt_cx":12,"nome":"Sérum Área dos Olhos Vitamina C Dermo Skin 15ml","preco":24.28,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":244,"ean":"7898632472721","linha":"Dermo Skin","qt_cx":12,"nome":"Tônico Facial Antiacne Dermo Skin 110ml","preco":12.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":245,"ean":"7898632472738","linha":"Dermo Skin","qt_cx":12,"nome":"Tônico Facial Antiacne Dermo Skin 250ml","preco":19.35,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1945,"ean":"7898632475470","linha":"Dermo Skin","qt_cx":12,"nome":"Tônico Facial Retinol Dermo Skin 110ml","preco":15.28,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":2017,"ean":"7898632475487","linha":"Dermo Skin","qt_cx":12,"nome":"Tônico Facial Retinol Dermo Skin 250ml","preco":22.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":2014,"ean":"7898632475494","linha":"Dermo Skin","qt_cx":12,"nome":"Tônico Facial Ác. Glicólico 7% Dermo Skin 110ml","preco":12.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":2015,"ean":"7898632475500","linha":"Dermo Skin","qt_cx":12,"nome":"Tônico Facial Ác. Glicólico 7% Dermo Skin 250ml","preco":19.35,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":3676,"ean":"7898632476392","linha":"Dermo Skin","qt_cx":12,"nome":"Água Micelar Clareadora Dermo Skin 110ml","preco":15.28,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":3803,"ean":"7898632476408","linha":"Dermo Skin","qt_cx":12,"nome":"Água Micelar Clareadora Dermo Skin 250ml","preco":22.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1971,"ean":"7898632475449","linha":"Dermo Skin","qt_cx":12,"nome":"Água Micelar Pele Sensível Dermo Skin 110ml","preco":15.28,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":1972,"ean":"7898632475456","linha":"Dermo Skin","qt_cx":12,"nome":"Água Micelar Pele Sensível Dermo Skin 250ml","preco":22.42,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":242,"ean":"7898632472707","linha":"Dermo Skin","qt_cx":12,"nome":"Água Micelar Vitamina C Dermo Skin 110ml","preco":12.85,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":243,"ean":"7898632472714","linha":"Dermo Skin","qt_cx":12,"nome":"Água Micelar Vitamina C Dermo Skin 250ml","preco":19.35,"categoria":"Dermo Skin - Facial","imagem":null},{"codigo":4352,"ean":"7898632476590","linha":"Dermo Sun","qt_cx":12,"nome":"Multiprotetor Facial Creme Bege Claro FPS 60 Dermo Sun 50g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4351,"ean":"7898632476606","linha":"Dermo Sun","qt_cx":12,"nome":"Multiprotetor Facial Creme Bege Médio FPS 60 Dermo Sun 50g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4350,"ean":"7898632476613","linha":"Dermo Sun","qt_cx":12,"nome":"Multiprotetor Facial Creme Bronze FPS 60 Dermo Sun 50g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4401,"ean":"7898632476620","linha":"Dermo Sun","qt_cx":12,"nome":"Multiprotetor Stick Bege Claro FPS 80 Dermo Sun 15g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4402,"ean":"7898632476637","linha":"Dermo Sun","qt_cx":12,"nome":"Multiprotetor Stick Bege Médio FPS 80 Dermo Sun 15g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4403,"ean":"7898632476644","linha":"Dermo Sun","qt_cx":12,"nome":"Multiprotetor Stick Bronze FPS 80 Dermo Sun 15g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4400,"ean":"7898632476651","linha":"Dermo Sun","qt_cx":12,"nome":"Multiprotetor Stick Incolor FPS 90 Dermo Sun 15g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4340,"ean":"7898632475913","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Baby & Kids FPS 60 Dermo Sun 120g","preco":51.43,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4343,"ean":"7898632475852","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Corporal FPS 30 Dermo Sun 120g","preco":36.28,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4346,"ean":"7898632475869","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Corporal FPS 30 Dermo Sun 200g","preco":54.28,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4344,"ean":"7898632475876","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Corporal FPS 50 Dermo Sun 120g","preco":42.85,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4347,"ean":"7898632475883","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Corporal FPS 50 Dermo Sun 200g","preco":70.0,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4345,"ean":"7898632475890","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Corporal FPS 70 Dermo Sun 120g","preco":51.42,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4348,"ean":"7898632475906","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Corporal FPS 70 Dermo Sun 200g","preco":85.71,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4339,"ean":"7898632475937","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Facial Fluido Incolor FPS 60 Dermo Sun 40mL","preco":42.14,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":4349,"ean":"7898632475920","linha":"Dermo Sun","qt_cx":12,"nome":"Protetor Facial Gel Creme Incolor FPS 50 Dermo Sun 50g","preco":29.85,"categoria":"Dermo Sun - Facial & Corporal","imagem":null},{"codigo":2004,"ean":"7898632475173","linha":"LabPOP","qt_cx":12,"nome":"Body Splash Belle Pink 190ml LabPOP","preco":26.42,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1999,"ean":"7898632475098","linha":"LabPOP","qt_cx":12,"nome":"Body Splash Bubblegum Witch 190ml LabPOP","preco":26.42,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2016,"ean":"7898632475135","linha":"LabPOP","qt_cx":12,"nome":"Body Splash Green Breeze 190ml LabPOP","preco":26.42,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1998,"ean":"7898632475043","linha":"LabPOP","qt_cx":12,"nome":"Body Splash It Girl 190ml LabPOP","preco":26.42,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2001,"ean":"7898632475210","linha":"LabPOP","qt_cx":12,"nome":"Creme Antiatrito Bumbum de Milhões 100g LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2044,"ean":"7898632475203","linha":"LabPOP","qt_cx":12,"nome":"Creme Firmador Bumbum de Milhões 240g LabPOP","preco":25.0,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1994,"ean":"7898632475197","linha":"LabPOP","qt_cx":12,"nome":"Esfoliante Bumbum de Milhões 240g LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2005,"ean":"7898632474886","linha":"LabPOP","qt_cx":12,"nome":"Espuma de Limpeza Hater da Oleosidade 130ml LabPOP","preco":22.85,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2033,"ean":"7898632474985","linha":"LabPOP","qt_cx":12,"nome":"Espuma de Limpeza Poderoso Glow Up 130ml LabPOP","preco":22.85,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2006,"ean":"7898632474930","linha":"LabPOP","qt_cx":12,"nome":"Espuma de Limpeza Trava na Maciez 130ml LabPOP","preco":22.85,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2198,"ean":"7898632475142","linha":"LabPOP","qt_cx":12,"nome":"Gel de Banho Belle Pink 240ml LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1995,"ean":"7898632475067","linha":"LabPOP","qt_cx":12,"nome":"Gel de Banho Bubblegum Witch 240ml LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2019,"ean":"7898632475104","linha":"LabPOP","qt_cx":12,"nome":"Gel de Banho Green Breeze 240ml LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1989,"ean":"7898632475029","linha":"LabPOP","qt_cx":12,"nome":"Gel de Banho It Girl 240ml LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2003,"ean":"7898632474879","linha":"LabPOP","qt_cx":12,"nome":"Gel de Limpeza Facial Hater da Oleosidade 240ml LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1992,"ean":"7898632474978","linha":"LabPOP","qt_cx":12,"nome":"Gel de Limpeza Facial Poderoso Glow Up 240ml LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1996,"ean":"7898632474923","linha":"LabPOP","qt_cx":12,"nome":"Gel de Limpeza Facial Trava na Maciez 240ml LabPOP","preco":19.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2051,"ean":"7898632475159","linha":"LabPOP","qt_cx":12,"nome":"Hidratante Corporal Belle Pink 150g LabPOP","preco":14.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2048,"ean":"7898632475074","linha":"LabPOP","qt_cx":12,"nome":"Hidratante Corporal Bubblegum Witch 150g LabPOP","preco":14.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2034,"ean":"7898632475111","linha":"LabPOP","qt_cx":12,"nome":"Hidratante Corporal Green Breeze 150g LabPOP","preco":14.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2049,"ean":"7898632475036","linha":"LabPOP","qt_cx":12,"nome":"Hidratante Corporal It Girl 150g LabPOP","preco":14.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1990,"ean":"7898632475166","linha":"LabPOP","qt_cx":12,"nome":"Mousse Esfoliante Belle Pink 240g LabPOP","preco":23.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1991,"ean":"7898632475081","linha":"LabPOP","qt_cx":12,"nome":"Mousse Esfoliante Bubblegum Witch 240g LabPOP","preco":23.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2199,"ean":"7898632475128","linha":"LabPOP","qt_cx":12,"nome":"Mousse Esfoliante Green Breeze 240g LabPOP","preco":23.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2063,"ean":"7898632475050","linha":"LabPOP","qt_cx":12,"nome":"Mousse Esfoliante It Girl 240g LabPOP","preco":23.28,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2010,"ean":"7898632474916","linha":"LabPOP","qt_cx":12,"nome":"Máscara Facial Hater da Oleosidade 70g LabPOP","preco":18.57,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2035,"ean":"7898632475012","linha":"LabPOP","qt_cx":12,"nome":"Máscara Facial Poderoso Glow Up 70g LabPOP","preco":18.57,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2011,"ean":"7898632474961","linha":"LabPOP","qt_cx":12,"nome":"Máscara Facial Trava na Maciez 70g LabPOP","preco":18.57,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2000,"ean":"7898632474909","linha":"LabPOP","qt_cx":12,"nome":"Sérum Facial Hater da Oleosidade 30ml LabPOP","preco":27.85,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1993,"ean":"7898632475005","linha":"LabPOP","qt_cx":12,"nome":"Sérum Facial Poderoso Glow Up 30ml LabPOP","preco":27.85,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":1997,"ean":"7898632474954","linha":"LabPOP","qt_cx":12,"nome":"Sérum Facial Trava na Maciez 30ml LabPOP","preco":27.85,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2200,"ean":"7898632474893","linha":"LabPOP","qt_cx":12,"nome":"Tônico Facial Hater da Oleosidade 110ml LabPOP","preco":16.42,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2009,"ean":"7898632474992","linha":"LabPOP","qt_cx":12,"nome":"Tônico Facial Poderoso Glow Up 110ml LabPOP","preco":16.42,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2013,"ean":"7898632474947","linha":"LabPOP","qt_cx":12,"nome":"Tônico Facial Trava na Maciez 110ml LabPOP","preco":16.42,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":2002,"ean":"7898632475180","linha":"LabPOP","qt_cx":12,"nome":"Óleo Termogênico Corporal Bumbum de Milhões 110ml LabPOP","preco":25.0,"categoria":"LabPOP - Facial & Corporal","imagem":null},{"codigo":129,"ean":"7898632472875","linha":"Dia a Dia","qt_cx":36,"nome":"Argila Amarela c/ Vitamina C Dia a Dia 100g","preco":6.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":120,"ean":"7898632470116","linha":"Dia a Dia","qt_cx":36,"nome":"Argila Branca Dia a Dia 100g","preco":6.42,"categoria":"Dia a Dia - Argilas Naturais","imagem":null},{"codigo":121,"ean":"7898632470321","linha":"Dia a Dia","qt_cx":36,"nome":"Argila Preta Dia a Dia 100g","preco":6.42,"categoria":"Dia a Dia - Argilas Naturais","imagem":null},{"codigo":128,"ean":"7898632470291","linha":"Dia a Dia","qt_cx":36,"nome":"Argila Rosa c/ Colágeno Dia a Dia 100g","preco":6.42,"categoria":"Dia a Dia - Argilas Naturais","imagem":null},{"codigo":130,"ean":"7898632472974","linha":"Dia a Dia","qt_cx":36,"nome":"Argila Roxa c/ Ácido Hialurônico Dia a Dia 100g","preco":6.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":119,"ean":"7898632470086","linha":"Dia a Dia","qt_cx":36,"nome":"Argila Verde Dia a Dia 100g","preco":6.42,"categoria":"Dia a Dia - Argilas Naturais","imagem":null},{"codigo":126,"ean":"7898632472332","linha":"Dia a Dia","qt_cx":36,"nome":"Argila Vermelha Dia a Dia 100g","preco":6.42,"categoria":"Dia a Dia - Argilas Naturais","imagem":null},{"codigo":2018,"ean":"7898632475265","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Cereja Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3397,"ean":"7898632475999","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Hibisco Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3541,"ean":"7898632476293","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Maracujá Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1948,"ean":"7898632475258","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Melancia Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1947,"ean":"7898632475227","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Morango Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3396,"ean":"7898632475982","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Pistache Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1949,"ean":"7898632475234","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Pitaya Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1950,"ean":"7898632475241","linha":"Dia a Dia","qt_cx":12,"nome":"Body Splash Pêssego Dia a Dia 190ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":40,"ean":"7898632470628","linha":"Dia a Dia","qt_cx":12,"nome":"Creme Hidratante Mãos e Pés Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":43,"ean":"7898632470635","linha":"Dia a Dia","qt_cx":12,"nome":"Creme Hidratante Mãos e Pés Dia a Dia 220g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":155,"ean":"7898632473216","linha":"Dia a Dia","qt_cx":12,"nome":"Creme Hidratante Sebo de Carneiro Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":164,"ean":"7898632471465","linha":"Dia a Dia","qt_cx":12,"nome":"Creme Hidratante Sebo de Carneiro Dia a Dia 220g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":42,"ean":"7898994532941","linha":"Dia a Dia","qt_cx":12,"nome":"Creme p/ Rachadfuras c/ Ureia Dia a Dia 240g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":41,"ean":"7898994532934","linha":"Dia a Dia","qt_cx":12,"nome":"Creme p/ Rachaduras Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":26,"ean":"7898632473483","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante 2 em 1 Mãos e Pés Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":29,"ean":"7898632473506","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante 2 em 1 Mãos e Pés Dia a Dia 240g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":8,"ean":"7898632472790","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Capim Limão Dia a Dia 150g","preco":12.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":20,"ean":"7898632470796","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Capim Limão Dia a Dia 300g","preco":17.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":2053,"ean":"7898632475326","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Cereja Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":2008,"ean":"7898632475333","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Cereja Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":24,"ean":"7898632470024","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Corporal Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":28,"ean":"7898632470031","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Corporal Dia a Dia 240g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":3399,"ean":"7898632475944","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Hibisco Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3401,"ean":"7898632475975","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Hibisco Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":13,"ean":"7898632473155","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Lima da Pérsia Dia a Dia 150g","preco":12.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":23,"ean":"7898632473124","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Lima da Pérsia Dia a Dia 300g","preco":17.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":5,"ean":"7898632472776","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Maracujá Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":19,"ean":"7898632470390","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Maracujá Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":6,"ean":"7898632472820","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Melancia Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":18,"ean":"7898632472264","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Melancia Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":9,"ean":"7898632472837","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Morango Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":17,"ean":"7898632471083","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Morango Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3398,"ean":"7898632475951","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Pistache Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3400,"ean":"7898632475968","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Pistache Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":7,"ean":"7898632472813","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Pitaya Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":16,"ean":"7898632472240","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Pitaya Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":14,"ean":"7898632473162","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Pêssego Dia a Dia 150g","preco":12.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":22,"ean":"7898632473131","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante Pêssego Dia a Dia 300g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":25,"ean":"7898994532972","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante para os Pés Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":27,"ean":"7898994532989","linha":"Dia a Dia","qt_cx":12,"nome":"Esfoliante para os Pés Dia a Dia 240g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":84,"ean":"7898632473230","linha":"Dia a Dia","qt_cx":12,"nome":"Gel Ice Pernas Cansadas Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":86,"ean":"7898632470970","linha":"Dia a Dia","qt_cx":12,"nome":"Gel Ice Pernas Cansadas Dia a Dia 240g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":83,"ean":"7898632473223","linha":"Dia a Dia","qt_cx":12,"nome":"Gel de Arnica Dia a Dia 100g","preco":12.14,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":85,"ean":"7898632471441","linha":"Dia a Dia","qt_cx":12,"nome":"Gel de Arnica Dia a Dia 240g","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":156,"ean":"7898632470901","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Capim Limão Dia a Dia 190ml","preco":11.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":2054,"ean":"7898632475340","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Cereja Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3514,"ean":"7898632476361","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Cereja Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3403,"ean":"7898632476002","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Hibisco Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3513,"ean":"7898632476309","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Hibisco Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":160,"ean":"7898632473261","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Lima da Pérsia Dia a Dia 190ml","preco":11.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":157,"ean":"7898632470864","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Maracujá Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3510,"ean":"7898632476330","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Maracujá Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":161,"ean":"7898632473278","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Melancia Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3508,"ean":"7898632476354","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Melancia Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":158,"ean":"7898632471205","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Morango Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3507,"ean":"7898632476378","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Morango Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3511,"ean":"7898632476347","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Pessego Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3402,"ean":"7898632476019","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Pistache Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3512,"ean":"7898632476316","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Pistache Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":163,"ean":"7898632473292","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Pitaya Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3506,"ean":"7898632476323","linha":"Dia a Dia","qt_cx":6,"nome":"Hidratante Pitaya Dia a Dia 490ml","preco":19.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":162,"ean":"7898632473285","linha":"Dia a Dia","qt_cx":12,"nome":"Hidratante Pêssego Dia a Dia 190ml","preco":11.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":209,"ean":"7898632473629","linha":"Dia a Dia","qt_cx":12,"nome":"Kit Experiência de Banho Capim Limão Dia a Dia c/ 5 itens","preco":65.71,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":208,"ean":"7898632473636","linha":"Dia a Dia","qt_cx":12,"nome":"Kit Experiência de Banho Lima da Pérsia Dia a Dia c/ 5 itens","preco":65.71,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":2046,"ean":"7898632475746","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Cereja","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3814,"ean":"7898632476514","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Hibisco","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":210,"ean":"7898632473612","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Maracujá","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":204,"ean":"7898632473674","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Melancia","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":205,"ean":"7898632473667","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Morango","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":206,"ean":"7898632473650","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Pessego","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3813,"ean":"7898632476538","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Pistache","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":203,"ean":"7898632473681","linha":"Dia a Dia","qt_cx":3,"nome":"Kit Presenteável Experiência Banho Dia a Dia 5 Itens - Pitaya","preco":65.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":2062,"ean":"7898632475845","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante + Hidratante + Body Splash Dia a Dia - Cereja","preco":43.57,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3811,"ean":"7898632476569","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante + Hidratante + Body Splash Dia a Dia - Hibisco","preco":43.57,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":2201,"ean":"7898632475821","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante + Hidratante + Body Splash Dia a Dia - Melancia","preco":43.57,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3810,"ean":"7898632476576","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante + Hidratante + Body Splash Dia a Dia - Pistache","preco":43.57,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":2202,"ean":"7898632475838","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante + Hidratante + Body Splash Dia a Dia - Pitaya","preco":43.57,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":2036,"ean":"7898632475739","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Cereja","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3807,"ean":"7898632476552","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Hibisco","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1963,"ean":"7898632474732","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Maracujá","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1961,"ean":"7898632474718","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Melancia","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1962,"ean":"7898632474725","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Morango","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1964,"ean":"7898632474749","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Pessego","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3806,"ean":"7898632476545","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Pistache","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":1960,"ean":"7898632474701","linha":"Dia a Dia","qt_cx":6,"nome":"Pack Esfoliante 150g + Hidratante 190ml Dia a Dia - Pitaya","preco":24.28,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":184,"ean":"7898632470895","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Capim Limão Dia a Dia 190ml","preco":10.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":2052,"ean":"7898632475357","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Cereja Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3521,"ean":"7898632476286","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Cereja Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3405,"ean":"7898632476026","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Hibisco Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3520,"ean":"7898632476248","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Hibisco Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":188,"ean":"7898632473315","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Lima da Pérsia Dia a Dia 190ml","preco":10.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":185,"ean":"7898632470857","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Maracujá Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3509,"ean":"7898632476255","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Maracujá Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":189,"ean":"7898632473322","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Melancia Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3517,"ean":"7898632476279","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Melancia Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":186,"ean":"7898632471199","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Morango Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3515,"ean":"7898632476385","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Morango Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3518,"ean":"7898632476262","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Pessego Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3404,"ean":"7898632476033","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Pistache Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3519,"ean":"7898632476224","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Pistache Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":191,"ean":"7898632473346","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Pitaya Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3516,"ean":"7898632476231","linha":"Dia a Dia","qt_cx":6,"nome":"Sabonete Líquido Pitaya Dia a Dia 490ml","preco":16.42,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":190,"ean":"7898632473339","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Líquido Pêssego Dia a Dia 190ml","preco":10.0,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3626,"ean":"7898632476194","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Cereja Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3411,"ean":"7898632476200","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Hibisco Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3625,"ean":"7898632476187","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Maracujá Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3624,"ean":"7898632476170","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Melancia Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3623,"ean":"7898632476163","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Morango Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3621,"ean":"7898632476217","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Pessego Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3637,"ean":"7898632476149","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Pistache Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3627,"ean":"7898632476156","linha":"Dia a Dia","qt_cx":12,"nome":"Sabonete Óleo de Banho Pitaya Dia a Dia 200ml","preco":22.14,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":175,"ean":"7898632473247","linha":"Dia a Dia","qt_cx":12,"nome":"Sais Efervescentes Escalda-pés Dia a Dia 250g","preco":19.28,"categoria":"Dia a Dia - Cuidados Diários","imagem":null},{"codigo":170,"ean":"7898632473414","linha":"Dia a Dia","qt_cx":12,"nome":"Sais Espumantes Capim Limão Dia a Dia 280g","preco":10.71,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":174,"ean":"7898632473360","linha":"Dia a Dia","qt_cx":12,"nome":"Sais Espumantes Lima da Pérsia Dia a Dia 280g","preco":10.71,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":2045,"ean":"7898632475364","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Cereja Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3407,"ean":"7898632476040","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Hibisco Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":171,"ean":"7898632473407","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Maracujá Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":172,"ean":"7898632473391","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Melancia Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":173,"ean":"7898632473384","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Morango Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":3406,"ean":"7898632476057","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Pistache Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":169,"ean":"7898632473421","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Pitaya Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":168,"ean":"7898632473377","linha":"Dia a Dia","qt_cx":12,"nome":"Sais de Banho Espumante Pêssego Dia a Dia 280g","preco":10.71,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4486,"ean":"7898632476736","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Cereja Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4488,"ean":"7898632476712","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Hibisco Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4484,"ean":"7898632476705","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Maracujá Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4483,"ean":"7898632476699","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Melancia Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4481,"ean":"7898632476682","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Morango Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4487,"ean":"7898632476729","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Pistache Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4482,"ean":"7898632476668","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Pitaya Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4485,"ean":"7898632476675","linha":"Dia a Dia","qt_cx":12,"nome":"Sugar Scrub Pêssego Dia a Dia 180g","preco":17.85,"categoria":"Dia a Dia - Experiência de Banho","imagem":null},{"codigo":4491,"ean":"7898632476767","linha":"Dia a Dia","qt_cx":12,"nome":"Sérum Corporal Niacinamida e Cybright Dia a Dia 200g","preco":16.42,"categoria":"Dia a Dia - Sérum Corporal","imagem":null},{"codigo":4492,"ean":"7898632476774","linha":"Dia a Dia","qt_cx":12,"nome":"Sérum Corporal Niacinamida e Cybright Dia a Dia 380g","preco":23.57,"categoria":"Dia a Dia - Sérum Corporal","imagem":null},{"codigo":4490,"ean":"7898632476781","linha":"Dia a Dia","qt_cx":12,"nome":"Sérum Corporal Pró - Retinol e PDRN Dia a Dia 200g","preco":16.42,"categoria":"Dia a Dia - Sérum Corporal","imagem":null},{"codigo":4493,"ean":"7898632476798","linha":"Dia a Dia","qt_cx":12,"nome":"Sérum Corporal Pró - Retinol e PDRN Dia a Dia 380g","preco":23.57,"categoria":"Dia a Dia - Sérum Corporal","imagem":null},{"codigo":4489,"ean":"7898632476743","linha":"Dia a Dia","qt_cx":12,"nome":"Sérum Corporal Ácido Hialurônico e Ceramidas Dia a Dia 200g","preco":16.42,"categoria":"Dia a Dia - Sérum Corporal","imagem":null},{"codigo":4494,"ean":"7898632476750","linha":"Dia a Dia","qt_cx":12,"nome":"Sérum Corporal Ácido Hialurônico e Ceramidas Dia a Dia 380g","preco":23.57,"categoria":"Dia a Dia - Sérum Corporal","imagem":null},{"codigo":213,"ean":"7898632471649","linha":"Dia a Dia","qt_cx":12,"nome":"Óleo Corporal de Amêndoas Doce Dia a Dia 120ml","preco":22.86,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":212,"ean":"7898632471656","linha":"Dia a Dia","qt_cx":12,"nome":"Óleo Corporal de Amêndoas c/ Colágeno Dia a Dia 120ml","preco":22.86,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":216,"ean":"7898632472288","linha":"Dia a Dia","qt_cx":12,"nome":"Óleo Corporal de Rosa Mosqueta Dia a Dia 120ml","preco":22.86,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":215,"ean":"7898632471632","linha":"Dia a Dia","qt_cx":12,"nome":"Óleo Corporal de Semente de Uva Dia a Dia 120ml","preco":22.86,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":199,"ean":"7898632472523","linha":"Vai & Brilha","qt_cx":12,"nome":"Caixa Display c/ 15 unid Pó Descolorante Vai&Brilha 20g","preco":24.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":97,"ean":"7898632474251","linha":"Vai & Brilha","qt_cx":12,"nome":"Creme Parafina Bronzeadora Beterraba e Buriti c/ FPS6 Vai&Brilha 90g","preco":27.0,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":98,"ean":"7898632474244","linha":"Vai & Brilha","qt_cx":12,"nome":"Creme Parafina Bronzeadora Cenoura & Urucum c/ FPS6 Vai&Brilha 90g","preco":27.0,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":95,"ean":"7898632474121","linha":"Vai & Brilha","qt_cx":12,"nome":"Creme de Parafina Ativadora Beterraba e Buriti Vai&Brilha 90g","preco":19.85,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":93,"ean":"7898632473605","linha":"Vai & Brilha","qt_cx":12,"nome":"Creme de Parafina Ativadora Cenoura & Urucum Vai&Brilha 90g","preco":19.85,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":94,"ean":"7898632473599","linha":"Vai & Brilha","qt_cx":12,"nome":"Creme de Parafina Hidratante Vai&Brilha 90g","preco":19.85,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":96,"ean":"7898632474220","linha":"Vai & Brilha","qt_cx":4,"nome":"Cx. Display c/ 12 Sachês Cr. Parafina Ativadora Beterraba e Buriti 20g","preco":41.28,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":193,"ean":"7898632472639","linha":"Vai & Brilha","qt_cx":4,"nome":"Cx. Display c/ 12 Sachês Cr. Parafina Ativadora Cenoura & Urucum 20g","preco":41.28,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":192,"ean":"7898632472646","linha":"Vai & Brilha","qt_cx":4,"nome":"Cx. Display c/ 12 Sachês Cr. Parafina Hidratante Vai&Brilha 20g","preco":41.28,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":1936,"ean":"7898632474787","linha":"Vai & Brilha","qt_cx":4,"nome":"Cx. Display c/ 12 Sachês Iluminador Corporal Bronze Vai&Brilha 20g","preco":81.28,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":1935,"ean":"7898632474770","linha":"Vai & Brilha","qt_cx":4,"nome":"Cx. Display c/ 12 Sachês Iluminador Corporal Dourado Vai&Brilha 20g","preco":81.28,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":92,"ean":"7898632474589","linha":"Vai & Brilha","qt_cx":12,"nome":"Gel Calmante Pós-Sol Vai&Brilha 140g","preco":15.57,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":75,"ean":"7898632474442","linha":"Vai & Brilha","qt_cx":12,"nome":"Iluminador Corporal Bronze Vai&Brilha 190ml","preco":51.28,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":74,"ean":"7898632474459","linha":"Vai & Brilha","qt_cx":12,"nome":"Iluminador Corporal Dourado Vai&Brilha 190ml","preco":51.28,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":200,"ean":"7898632470529","linha":"Vai & Brilha","qt_cx":12,"nome":"Kit Descolorante - Banho de Lua Vai & Brilha - Cx. c/ 5 Itens","preco":24.14,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":225,"ean":"7898632474572","linha":"Vai & Brilha","qt_cx":12,"nome":"Água Autobronzeadora Intensiva Vai&Brilha 130ml","preco":72.14,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":226,"ean":"7898632474565","linha":"Vai & Brilha","qt_cx":12,"nome":"Água Autobronzeadora Natural Vai&Brilha 130ml","preco":62.14,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":224,"ean":"7898632474268","linha":"Vai & Brilha","qt_cx":12,"nome":"Óleo Ativador de Bronze FPS15 Vai&Brilha 120ml","preco":34.14,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":223,"ean":"7898632474275","linha":"Vai & Brilha","qt_cx":12,"nome":"Óleo Ativador de Bronze FPS6 Vai&Brilha 120ml","preco":24.14,"categoria":"Vai & Brilha - Corporal & Capilar","imagem":null},{"codigo":102,"ean":"7898632471458","linha":"LabotratPRO","qt_cx":24,"nome":"Amaciante de Calosidades 110ml LabotratPRO","preco":7.85,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":103,"ean":"7898632472400","linha":"LabotratPRO","qt_cx":6,"nome":"Amaciante de Calosidades 1L LabotratPRO","preco":33.0,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":101,"ean":"7898632472394","linha":"LabotratPRO","qt_cx":6,"nome":"Amaciante de Calosidades 500ml LabotratPRO","preco":19.28,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":45,"ean":"7898994532958","linha":"LabotratPRO","qt_cx":36,"nome":"Amolecedor de Cutícula 30g LabotratPRO","preco":5.0,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":47,"ean":"7898632470468","linha":"LabotratPRO","qt_cx":6,"nome":"Amolecedor de Cutícula 500g LabotratPRO","preco":19.28,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":44,"ean":"7898632473759","linha":"LabotratPRO","qt_cx":6,"nome":"Amolecedor de Cutícula 900g LabotratPRO","preco":33.0,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":46,"ean":"7898632473742","linha":"LabotratPRO","qt_cx":24,"nome":"Amolecedor de Cutícula 90g LabotratPRO","preco":7.85,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":133,"ean":"7898632470130","linha":"LabotratPRO","qt_cx":6,"nome":"Argila Branca Natural 500g LabotratPRO","preco":17.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":134,"ean":"7898632470109","linha":"LabotratPRO","qt_cx":6,"nome":"Argila Verde Natural 500g LabotratPRO","preco":17.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":67,"ean":"7898632473841","linha":"LabotratPRO","qt_cx":12,"nome":"Creme Esfoliante c/ Nano Ozonio & Pepitídeos 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":68,"ean":"7898632473872","linha":"LabotratPRO","qt_cx":6,"nome":"Creme Esfoliante c/ Nano Ozonio & Pepitídeos 900g LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":69,"ean":"7898632473766","linha":"LabotratPRO","qt_cx":12,"nome":"Creme Intensivo p/ Rachaduras 350g LabotratPRO","preco":23.57,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":48,"ean":"7898632473803","linha":"LabotratPRO","qt_cx":6,"nome":"Creme Removedor de Cutículas 500g LabotratPRO","preco":29.85,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":49,"ean":"7898632473797","linha":"LabotratPRO","qt_cx":24,"nome":"Creme Removedor de Cutículas 90g LabotratPRO","preco":9.28,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":55,"ean":"7898632473957","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Aquecimento Intenso 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":56,"ean":"7898632473940","linha":"LabotratPRO","qt_cx":6,"nome":"Creme de Massagem Aquecimento Intenso 900g LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":65,"ean":"7898632473964","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Dreno Detox c/ Retinol 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":63,"ean":"7898632473926","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Firmador DMAE & Q10 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":61,"ean":"7898632473919","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Nano Enzimatico 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":62,"ean":"7898632473902","linha":"LabotratPRO","qt_cx":6,"nome":"Creme de Massagem Nano Enzimatico 900g LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":51,"ean":"7898632473865","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Neutro 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":52,"ean":"7898632473858","linha":"LabotratPRO","qt_cx":6,"nome":"Creme de Massagem Neutro 900g LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":59,"ean":"7898632474015","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Pimenta Negra 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":60,"ean":"7898632473995","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Redutor Ozonizado 10 Ativos 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":53,"ean":"7898632473827","linha":"LabotratPRO","qt_cx":12,"nome":"Creme de Massagem Relaxante 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":54,"ean":"7898632473834","linha":"LabotratPRO","qt_cx":6,"nome":"Creme de Massagem Relaxante 900g LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":30,"ean":"7898632473773","linha":"LabotratPRO","qt_cx":12,"nome":"Esfoliante p/ os Pés 350g LabotratPRO","preco":22.85,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":247,"ean":"7898632474039","linha":"LabotratPRO","qt_cx":12,"nome":"Fluido Pimenta Negra Termo Ativador 250ml LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":89,"ean":"7898632474053","linha":"LabotratPRO","qt_cx":6,"nome":"Gel Condutor Lipolítico 20 Ativos 900g LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":90,"ean":"7898632473889","linha":"LabotratPRO","qt_cx":12,"nome":"Gel Redutor Crioterapico 350g LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":91,"ean":"7898632473896","linha":"LabotratPRO","qt_cx":6,"nome":"Gel Redutor Crioterapico 900g LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":211,"ean":"7898632474077","linha":"LabotratPRO","qt_cx":2,"nome":"Kit Spa Mãos & Pés c/ 05 itens LabotratPRO","preco":119.85,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":249,"ean":"7898632473780","linha":"LabotratPRO","qt_cx":12,"nome":"Loção Higienizadora Mãos & Pés 250g LabotratPRO","preco":11.43,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":246,"ean":"7898632474022","linha":"LabotratPRO","qt_cx":12,"nome":"Loção Prebiótica Higienizadora 250ml LabotratPRO","preco":22.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":50,"ean":"7898632473810","linha":"LabotratPRO","qt_cx":12,"nome":"Mousse de Parafina Hidratante 250g LabotratPRO","preco":42.71,"categoria":"LabotratPRO - Pés & Mãos","imagem":null},{"codigo":220,"ean":"7898632474060","linha":"LabotratPRO","qt_cx":6,"nome":"Óleo de Massagem Neutro c/ 5 Ativos 500ml LabotratPRO","preco":37.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":124,"ean":"7898632471212","linha":"Epiltrat","qt_cx":36,"nome":"Bicarbonato de Sódio 100g Labotrat","preco":12.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":146,"ean":"7898632470765","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Algas Marinhas 1,3kg Epiltrat","preco":37.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":141,"ean":"7898632470758","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Algas Marinhas 600g Epiltrat","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":147,"ean":"7898632470734","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Camomila 1,3kgEpiltrat","preco":37.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":142,"ean":"7898632470727","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Camomila 600g Epiltrat","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":148,"ean":"7898632471496","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Cravo 1,3kg Epiltrat","preco":37.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1940,"ean":"7898632471489","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Cravo Epiltrat 600g Epiltrat","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":149,"ean":"7898632470703","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Mel 1,3kg Epiltrat","preco":37.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":143,"ean":"7898632470697","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Mel 600g Epiltrat","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":150,"ean":"7898632472233","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Natural 1,3kg Epiltrat","preco":37.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":144,"ean":"7898632472226","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Natural 600g Epiltrat","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":151,"ean":"7898632471601","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Negra 1,3kg Epiltrat","preco":37.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":145,"ean":"7898632471595","linha":"Epiltrat","qt_cx":6,"nome":"Cera Depilatória Negra 600g Epiltrat","preco":19.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":76,"ean":"7898632474299","linha":"Epiltrat","qt_cx":12,"nome":"Creme Calmante Alfazulen 50g Epiltrat","preco":8.57,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":131,"ean":"7898632473186","linha":"Epiltrat","qt_cx":30,"nome":"Dolomita Cosmética 200g Epiltrat","preco":6.42,"categoria":"Dia a Dia - Argilas Naturais","imagem":null},{"codigo":132,"ean":"7898632471519","linha":"Epiltrat","qt_cx":6,"nome":"Dolomita Cosmética 800g Epiltrat","preco":19.07,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":88,"ean":"7898632473575","linha":"Epiltrat","qt_cx":12,"nome":"Gel Calmante Cravo 240g Epiltrat","preco":13.5,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":87,"ean":"\t7898632473582","linha":"Epiltrat","qt_cx":12,"nome":"Gel Calmante de Lavanda 240g Epiltrat","preco":13.5,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":248,"ean":"7898632474091","linha":"Epiltrat","qt_cx":12,"nome":"Loção Higienizadora Adstrigente Cravo 140ml Epiltrat","preco":10.38,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":104,"ean":"7898632474107","linha":"Epiltrat","qt_cx":12,"nome":"Loção Higienizadora Adstrigente Cravo 240ml Epiltrat","preco":16.8,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":99,"ean":"7898632471526","linha":"Epiltrat","qt_cx":12,"nome":"Loção Higienizadora Adstrigente Menta & Calêndula 140ml Epiltrat","preco":10.39,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":100,"ean":"7898632471533","linha":"Epiltrat","qt_cx":12,"nome":"Loção Higienizadora Adstrigente Menta & Calêndula 240ml Epiltrat","preco":16.8,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":122,"ean":"7898632471427","linha":"Epiltrat","qt_cx":36,"nome":"Talco Neutro 100g Epiltrat","preco":12.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1917,"ean":"7898632471434","linha":"Epiltrat","qt_cx":6,"nome":"Talco Neutro 500g Epiltrat","preco":31.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":222,"ean":"7898632474084","linha":"Epiltrat","qt_cx":12,"nome":"Óleo Removedor de Cera Cravo 140ml Epiltrat","preco":16.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":221,"ean":"7898632474114","linha":"Epiltrat","qt_cx":12,"nome":"Óleo Removedor de Cera Cravo 240ml Epiltrat","preco":25.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":218,"ean":"7898632471571","linha":"Epiltrat","qt_cx":12,"nome":"Óleo Removedor de Cera Pracaxí & Semente de Uva 240ml Epiltrat","preco":25.0,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":217,"ean":"7898632471564","linha":"Epiltrat","qt_cx":12,"nome":"Óleo Removedor de Cera Pracaxí & Semente de Uva140ml Epiltrat","preco":16.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":109,"ean":"7898632474497","linha":"Sens","qt_cx":12,"nome":"Body Splash Macadâmia & Bergamota Sens 230ml","preco":27.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":108,"ean":"7898632474473","linha":"Sens","qt_cx":12,"nome":"Body Splash Morango & Rubi Sens 230ml","preco":27.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":107,"ean":"7898632474466","linha":"Sens","qt_cx":12,"nome":"Body Splash Verbena & Bamboo Sens 230ml","preco":27.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":34,"ean":"7898632474527","linha":"Sens","qt_cx":12,"nome":"Esfoliante Scrub Flor de Ameixa & Baunilha Sens 300g","preco":34.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":36,"ean":"7898632474510","linha":"Sens","qt_cx":12,"nome":"Esfoliante Scrub Macadâmia & Bergamota Sens 300g","preco":34.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":38,"ean":"7898632474558","linha":"Sens","qt_cx":12,"nome":"Esfoliante Scrub Morango & Rubi Sens 300g","preco":34.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":37,"ean":"\t7898632474534","linha":"Sens","qt_cx":12,"nome":"Esfoliante Scrub Orquídea & Jasmim Sens 300g","preco":34.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":35,"ean":"7898632474541","linha":"Sens","qt_cx":12,"nome":"Esfoliante Scrub Verbena & Bamboo Sens 300g","preco":34.28,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":81,"ean":"7898632474343","linha":"Sens","qt_cx":12,"nome":"Hidratante Flor de Ameixa & Baunilha Sens 200g","preco":17.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":80,"ean":"7898632474350","linha":"Sens","qt_cx":12,"nome":"Hidratante Macadâmia & Bergamota Sens 200g","preco":17.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":82,"ean":"7898632474336","linha":"Sens","qt_cx":12,"nome":"Hidratante Morango & Rubi Sens 200g","preco":17.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":78,"ean":"7898632474374","linha":"Sens","qt_cx":12,"nome":"Hidratante Orquídea & Jasmim Sens 200g","preco":17.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":79,"ean":"7898632474367","linha":"Sens","qt_cx":12,"nome":"Hidratante Verbena & Bamboo Sens 200g","preco":17.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1967,"ean":"7898632474671","linha":"Sens","qt_cx":4,"nome":"Kit Presenteável Sens c/ 3 Itens - Morango & Rubi","preco":78.58,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1969,"ean":"7898632474695","linha":"Sens","qt_cx":4,"nome":"Kit Presenteável Sens c/ 3 Itens - Verbena & Bamboo","preco":78.58,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1958,"ean":"7898632474619","linha":"Sens","qt_cx":4,"nome":"Kit Presenteável Sens c/ 4 Itens - Macadâmia & Bergamota","preco":107.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1956,"ean":"7898632474602","linha":"Sens","qt_cx":4,"nome":"Kit Presenteável Sens c/ 4 Itens - Orquídea & Jasmim","preco":107.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":1959,"ean":"7898632474626","linha":"Sens","qt_cx":4,"nome":"Kit Presenteável Sens c/ 4 Itens - Verbena & Bamboo","preco":107.15,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":195,"ean":"7898632474404","linha":"Sens","qt_cx":12,"nome":"Shower Gel Flor de Ameixa & Baunilha Sens 230ml","preco":18.58,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":194,"ean":"7898632474411","linha":"Sens","qt_cx":12,"nome":"Shower Gel Líquido Morango & Rubi Sens 230ml","preco":18.58,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":196,"ean":"7898632474428","linha":"Sens","qt_cx":12,"nome":"Shower Gel Líquido Orquídea & Jasmim Sens 230ml","preco":18.58,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":197,"ean":"7898632474398","linha":"Sens","qt_cx":12,"nome":"Shower Gel Macadâmia & Bergamota Sens 230ml","preco":18.58,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":198,"ean":"7898632474381","linha":"Sens","qt_cx":12,"nome":"Shower Gel Verbena & Bamboo Sens 230ml","preco":18.58,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":165,"ean":"7898632472011","linha":"Elo","qt_cx":12,"nome":"Hidratante Para Gestante Elo 230ml","preco":31.42,"categoria":"Elo - Gestantes & Lactantes","imagem":null},{"codigo":166,"ean":"7898632472028","linha":"Elo","qt_cx":12,"nome":"Hidratante Pós Gestacional Elo 230ml","preco":31.42,"categoria":"Elo - Gestantes & Lactantes","imagem":null},{"codigo":219,"ean":"7898632471625","linha":"Elo","qt_cx":12,"nome":"Óleo Corporal Gestantes c/ Colágeno Elo 120ml","preco":31.42,"categoria":"Elo - Gestantes & Lactantes","imagem":null},{"codigo":31,"ean":"7898632473704","linha":"Mr. Thomas","qt_cx":12,"nome":"Esfoliante Facial Detox Mr. Thomas 90g","preco":15.0,"categoria":"Mr. Thomas - Masculina","imagem":null},{"codigo":118,"ean":"7898632473711","linha":"Mr. Thomas","qt_cx":12,"nome":"Máscara Facial Detox Mr. Thomas 90g","preco":15.0,"categoria":"Mr. Thomas - Masculina","imagem":null},{"codigo":1639,"ean":"7898632473728","linha":"Mr. Thomas","qt_cx":12,"nome":"Pomada Modeladora Matte Mr. Thomas 90g","preco":31.42,"categoria":"Mr. Thomas - Masculina","imagem":null},{"codigo":1640,"ean":"7898632473735","linha":"Mr. Thomas","qt_cx":12,"nome":"Pomada Modeladora Molhada Mr. Thomas 90g","preco":22.85,"categoria":"Mr. Thomas - Masculina","imagem":null},{"codigo":1636,"ean":"7898632473698","linha":"Mr. Thomas","qt_cx":12,"nome":"Shampoo Detox 3x1 Mr. Thomas 240ml","preco":22.85,"categoria":"Mr. Thomas - Masculina","imagem":null},{"codigo":241,"ean":"7898632471168","linha":"Labotrat","qt_cx":24,"nome":"Tônico de Alho 110ml","preco":11.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":240,"ean":"7898632471151","linha":"Labotrat","qt_cx":30,"nome":"Tônico de Alho 34ml","preco":7.14,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":231,"ean":"7898632471670","linha":"Labotrat","qt_cx":12,"nome":"Óleo Essencial de Alecrim 10ml","preco":31.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":230,"ean":"7898632471687","linha":"Labotrat","qt_cx":12,"nome":"Óleo Essencial de Copaíba 10ml","preco":17.85,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":227,"ean":"7898632471694","linha":"Labotrat","qt_cx":12,"nome":"Óleo Essencial de Cravo 10ml","preco":31.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":228,"ean":"7898632471700","linha":"Labotrat","qt_cx":12,"nome":"Óleo Essencial de Hortelã 10ml","preco":31.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":229,"ean":"7898632471717","linha":"Labotrat","qt_cx":12,"nome":"Óleo Essencial de Lavanda 10ml","preco":31.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":233,"ean":"7898632472066","linha":"Labotrat","qt_cx":12,"nome":"Óleo Essencial de Malaleuca 10ml","preco":31.42,"categoria":"Descontinuados (com estoque)","imagem":null},{"codigo":232,"ean":"7898632471724","linha":"Labotrat","qt_cx":12,"nome":"Óleo Essencial de Rosa Mosqueta 10ml","preco":17.85,"categoria":"Descontinuados (com estoque)","imagem":null}];
+
+const VALMIR = {
+  nome: 'Valmir Batista',
+  whatsapp: '5562998217459',
+  whatsappFmt: '(62) 99821-7459',
+  email: 'valmir@9blue.com.br'
+};
+const ADMIN_PASSWORD = 'labotrat2026'; // troque aqui
+const PEDIDO_MINIMO = 2500.00; // pedido mínimo em R$ - altere aqui se necessário
+
+// ====== ESTADO ======
+const state = {
+  produtos: [],
+  pedido: {}, // { codigo: qty }
+  fotos: {},  // { codigo: dataURL }
+  filtroLinha: 'all',
+  busca: ''
+};
+
+// ====== STORAGE ======
+const STORAGE_KEY = 'labotrat_pedido_v1';
+const PRODS_KEY = 'labotrat_produtos_v1';
+const PHOTOS_KEY = 'labotrat_fotos_v1';
+const CLIENT_KEY = 'labotrat_cliente_v1';
+
+function loadState(){
+  try{
+    const ped = localStorage.getItem(STORAGE_KEY);
+    if(ped) state.pedido = JSON.parse(ped);
+    const ps = localStorage.getItem(PRODS_KEY);
+    state.produtos = ps ? JSON.parse(ps) : PRODUTOS_PADRAO;
+    const ft = localStorage.getItem(PHOTOS_KEY);
+    if(ft) state.fotos = JSON.parse(ft);
+    const cli = localStorage.getItem(CLIENT_KEY);
+    if(cli){
+      const c = JSON.parse(cli);
+      ['f_nome','f_empresa','f_cnpj','f_telefone','f_email','f_cidade'].forEach(id=>{
+        if(c[id]) document.getElementById(id).value = c[id];
+      });
+    }
+  }catch(e){
+    state.produtos = PRODUTOS_PADRAO;
+  }
+}
+function saveOrder(){ try{localStorage.setItem(STORAGE_KEY, JSON.stringify(state.pedido));}catch(e){} }
+function saveProducts(){ try{localStorage.setItem(PRODS_KEY, JSON.stringify(state.produtos));}catch(e){} }
+function savePhotos(){ try{localStorage.setItem(PHOTOS_KEY, JSON.stringify(state.fotos));}catch(e){console.warn('Photos quota?',e)} }
+function saveClient(){
+  const c={};
+  ['f_nome','f_empresa','f_cnpj','f_telefone','f_email','f_cidade'].forEach(id=>{c[id]=document.getElementById(id).value});
+  try{localStorage.setItem(CLIENT_KEY, JSON.stringify(c));}catch(e){}
+}
+
+// ====== HELPERS ======
+const fmtBRL = v => 'R$ ' + v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+function toast(msg, type=''){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type;
+  setTimeout(()=>t.classList.add('show'),10);
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+function maskCNPJ(v){
+  v=v.replace(/\D/g,'').slice(0,14);
+  return v.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3')
+    .replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2');
+}
+function maskTel(v){
+  v=v.replace(/\D/g,'').slice(0,11);
+  if(v.length<=10) return v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{4})(\d)/,'$1-$2');
+  return v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2');
+}
+function getProd(codigo){ return state.produtos.find(p=>p.codigo===codigo); }
+function totaisPedido(){
+  let items=0, boxes=0, units=0, total=0;
+  for(const [cod,qty] of Object.entries(state.pedido)){
+    const p = getProd(parseInt(cod));
+    if(!p || qty<=0) continue;
+    items++;
+    boxes += qty;
+    units += qty * p.qt_cx;
+    total += qty * p.qt_cx * p.preco;
+  }
+  return {items,boxes,units,total};
+}
+
+// ====== RENDER ======
+function renderFilters(){
+  const linhas = ['all', ...new Set(state.produtos.map(p=>p.linha))];
+  const counts = {};
+  state.produtos.forEach(p=>{counts[p.linha]=(counts[p.linha]||0)+1});
+  counts.all = state.produtos.length;
+  const html = linhas.map(l=>{
+    const label = l==='all' ? 'Todas as linhas' : l;
+    const active = state.filtroLinha===l ? 'active' : '';
+    return `<button class="chip ${active}" data-linha="${l}">${label}<span class="count">${counts[l]||0}</span></button>`;
+  }).join('');
+  document.getElementById('lineFilters').innerHTML = html;
+  document.querySelectorAll('.chip').forEach(c=>{
+    c.onclick = ()=>{state.filtroLinha = c.dataset.linha; renderFilters(); renderProducts();};
+  });
+}
+
+function placeholderFor(p){
+  return `<div class="placeholder">
+    <div class="line-tag">${p.linha}</div>
+    <div class="icon">🧴</div>
+    <div class="code">${p.codigo}</div>
+  </div>`;
+}
+
+function renderProducts(){
+  const q = state.busca.toLowerCase().trim();
+  const linha = state.filtroLinha;
+  let filtered = state.produtos.filter(p=>{
+    if(linha!=='all' && p.linha!==linha) return false;
+    if(q && !(p.nome.toLowerCase().includes(q) || String(p.codigo).includes(q) || p.ean.includes(q))) return false;
+    return true;
+  });
+  document.getElementById('emptyState').style.display = filtered.length===0 ? 'block' : 'none';
+
+  const html = filtered.map(p=>{
+    const qty = state.pedido[p.codigo] || 0;
+    const subtotal = qty * p.qt_cx * p.preco;
+    const foto = state.fotos[p.codigo];
+    const imgHtml = foto ? `<img src="${foto}" alt="${p.nome}" oncontextmenu="return false">` : placeholderFor(p);
+    return `<article class="product ${qty>0?'has-qty':''}" data-cod="${p.codigo}">
+      <div class="product-img">
+        <span class="line-badge">${p.linha}</span>
+        ${qty>0?`<span class="qty-badge">${qty}</span>`:''}
+        ${imgHtml}
+      </div>
+      <div class="product-body">
+        <div class="product-name no-edit" title="${p.nome.replace(/"/g,'&quot;')}">${p.nome}</div>
+        <div class="price-row">
+          <div class="price">${fmtBRL(p.preco)}<small> /un</small></div>
+          <span class="box-info">Cx c/ ${p.qt_cx}</span>
+        </div>
+        <div class="qty-control" data-cod="${p.codigo}">
+          <button class="qty-minus" aria-label="diminuir">−</button>
+          <input type="number" class="qty-input" min="0" step="1" value="${qty}" inputmode="numeric">
+          <button class="qty-plus" aria-label="aumentar">+</button>
+        </div>
+        <div class="qty-subtotal">${qty>0 ? `${qty} cx × ${p.qt_cx} un = <strong>${fmtBRL(subtotal)}</strong>` : '&nbsp;'}</div>
+        <div class="product-meta">
+          <span class="codigo">Cód ${p.codigo}</span>
+          <span class="ean">EAN ${p.ean}</span>
+        </div>
+      </div>
+    </article>`;
+  }).join('');
+  document.getElementById('productsGrid').innerHTML = html;
+
+  // bind qty controls
+  document.querySelectorAll('.qty-control').forEach(ctrl=>{
+    const cod = parseInt(ctrl.dataset.cod);
+    const input = ctrl.querySelector('.qty-input');
+    ctrl.querySelector('.qty-minus').onclick = ()=>{ setQty(cod, (state.pedido[cod]||0)-1); };
+    ctrl.querySelector('.qty-plus').onclick  = ()=>{ setQty(cod, (state.pedido[cod]||0)+1); };
+    input.oninput = (e)=>{
+      const v = parseInt(e.target.value) || 0;
+      setQty(cod, Math.max(0,v), false);
+    };
+    input.onblur = ()=>renderProducts();
+  });
+}
+
+function setQty(cod, qty, rerender=true){
+  qty = Math.max(0, Math.floor(qty));
+  if(qty===0) delete state.pedido[cod];
+  else state.pedido[cod] = qty;
+  saveOrder();
+  if(rerender){ renderProducts(); }
+  renderSummary();
+}
+
+function renderSummary(){
+  const t = totaisPedido();
+  document.getElementById('sumItems').textContent = t.items;
+  document.getElementById('sumBoxes').textContent = t.boxes;
+  document.getElementById('sumUnits').textContent = t.units;
+  document.getElementById('sumTotal').textContent = fmtBRL(t.total);
+  document.getElementById('fabCount').textContent = t.items;
+  document.getElementById('cartFab').classList.toggle('visible', t.items>0);
+
+  // Summary items
+  const cont = document.getElementById('summaryItems');
+  if(t.items===0){
+    cont.innerHTML = '<div class="summary-empty">Adicione produtos ao pedido para ver o resumo aqui.</div>';
+  } else {
+    const rows = Object.entries(state.pedido)
+      .map(([cod,qty])=>({p:getProd(parseInt(cod)),qty}))
+      .filter(x=>x.p && x.qty>0)
+      .sort((a,b)=>a.p.linha.localeCompare(b.p.linha));
+    cont.innerHTML = rows.map(({p,qty})=>{
+      const sub = qty * p.qt_cx * p.preco;
+      return `<div class="summary-item">
+        <span class="qty">${qty} cx</span>
+        <span class="name"><strong>[${p.codigo}]</strong> ${p.nome}</span>
+        <span class="sub">${fmtBRL(sub)}</span>
+      </div>`;
+    }).join('');
+  }
+
+  // Pedido mínimo (barra de progresso + bloqueio)
+  const pct = Math.min(100, (t.total / PEDIDO_MINIMO) * 100);
+  const falta = Math.max(0, PEDIDO_MINIMO - t.total);
+  const minBox = document.getElementById('minProgress');
+  document.getElementById('minFill').style.width = pct + '%';
+  document.getElementById('minPct').textContent = pct.toFixed(0) + '%';
+
+  minBox.classList.remove('met','near','below');
+  if(t.total >= PEDIDO_MINIMO){
+    minBox.classList.add('met');
+    document.getElementById('minLabel').textContent = '✅ Pedido mínimo atingido!';
+    document.getElementById('minMsg').textContent = `Seu pedido de ${fmtBRL(t.total)} está acima do mínimo de ${fmtBRL(PEDIDO_MINIMO)}. Pronto para envio!`;
+  } else if(t.total >= PEDIDO_MINIMO * 0.75){
+    minBox.classList.add('near');
+    document.getElementById('minLabel').textContent = `Pedido mínimo: ${fmtBRL(PEDIDO_MINIMO)}`;
+    document.getElementById('minMsg').textContent = `⚠️ Faltam ${fmtBRL(falta)} para atingir o pedido mínimo. Você está quase lá!`;
+  } else {
+    minBox.classList.add('below');
+    document.getElementById('minLabel').textContent = `Pedido mínimo: ${fmtBRL(PEDIDO_MINIMO)}`;
+    if(t.items===0){
+      document.getElementById('minMsg').textContent = `Adicione produtos para atingir o pedido mínimo de ${fmtBRL(PEDIDO_MINIMO)}.`;
+    } else {
+      document.getElementById('minMsg').textContent = `Faltam ${fmtBRL(falta)} para atingir o pedido mínimo de ${fmtBRL(PEDIDO_MINIMO)}.`;
+    }
+  }
+
+  const enabled = t.items>0 && t.total >= PEDIDO_MINIMO;
+  document.getElementById('btnWa').disabled = !enabled;
+  document.getElementById('btnEmail').disabled = !enabled;
+}
+
+// ====== PEDIDO ENVIO ======
+function getClient(){
+  return {
+    nome: document.getElementById('f_nome').value.trim(),
+    empresa: document.getElementById('f_empresa').value.trim(),
+    cnpj: document.getElementById('f_cnpj').value.trim(),
+    telefone: document.getElementById('f_telefone').value.trim(),
+    email: document.getElementById('f_email').value.trim(),
+    cidade: document.getElementById('f_cidade').value.trim()
+  };
+}
+
+function validateClient(){
+  const c = getClient();
+  const req = ['nome','empresa','cnpj','telefone','email'];
+  const missing = [];
+  req.forEach(k=>{
+    const el = document.getElementById('f_'+k);
+    if(!c[k]){ el.classList.add('error'); missing.push(k); }
+    else el.classList.remove('error');
+  });
+  return {ok:missing.length===0, missing, client:c};
+}
+
+function buildOrderText(){
+  const c = getClient();
+  const t = totaisPedido();
+  const date = new Date().toLocaleString('pt-BR');
+  const rows = Object.entries(state.pedido)
+    .map(([cod,qty])=>({p:getProd(parseInt(cod)),qty}))
+    .filter(x=>x.p && x.qty>0)
+    .sort((a,b)=>a.p.linha.localeCompare(b.p.linha));
+
+  let txt = `*PEDIDO DE COMPRA - LABOTRAT*\n`;
+  txt += `Representante: ${VALMIR.nome} | ${VALMIR.whatsappFmt}\n`;
+  txt += `Data: ${date}\n`;
+  txt += `\n*DADOS DA EMPRESA*\n`;
+  txt += `Comprador: ${c.nome}\n`;
+  txt += `Empresa: ${c.empresa}\n`;
+  txt += `CNPJ: ${c.cnpj}\n`;
+  txt += `Telefone: ${c.telefone}\n`;
+  txt += `E-mail: ${c.email}\n`;
+  if(c.cidade) txt += `Cidade/UF: ${c.cidade}\n`;
+  txt += `\n*ITENS DO PEDIDO*\n`;
+  let lastLinha='';
+  rows.forEach(({p,qty})=>{
+    if(p.linha!==lastLinha){
+      txt += `\n— ${p.linha} —\n`;
+      lastLinha = p.linha;
+    }
+    const sub = qty * p.qt_cx * p.preco;
+    txt += `• [${p.codigo}] ${p.nome}\n`;
+    txt += `   ${qty} cx × ${p.qt_cx} un × ${fmtBRL(p.preco)} = ${fmtBRL(sub)}\n`;
+  });
+  txt += `\n*RESUMO*\n`;
+  txt += `Itens distintos: ${t.items}\n`;
+  txt += `Total de caixas: ${t.boxes}\n`;
+  txt += `Total de unidades: ${t.units}\n`;
+  txt += `*TOTAL DO PEDIDO: ${fmtBRL(t.total)}*\n`;
+  return txt;
+}
+
+function checkMinimo(){
+  const t = totaisPedido();
+  if(t.total < PEDIDO_MINIMO){
+    const falta = PEDIDO_MINIMO - t.total;
+    const warn = document.getElementById('formWarn');
+    warn.style.display='flex';
+    warn.className='warn-msg error-msg';
+    warn.textContent = `Pedido mínimo de ${fmtBRL(PEDIDO_MINIMO)} não atingido. Seu pedido atual é de ${fmtBRL(t.total)}. Faltam ${fmtBRL(falta)} para liberar o envio.`;
+    document.getElementById('minProgress').scrollIntoView({behavior:'smooth',block:'center'});
+    toast(`Pedido mínimo R$ 2.500,00 — faltam ${fmtBRL(falta)}`, 'error');
+    return false;
+  }
+  return true;
+}
+
+function sendWhatsApp(){
+  if(!checkMinimo()) return;
+  const v = validateClient();
+  if(!v.ok){
+    const warn = document.getElementById('formWarn');
+    warn.style.display='flex';
+    warn.className='warn-msg';
+    warn.textContent = '⚠️ Preencha os campos obrigatórios: ' + v.missing.join(', ');
+    document.querySelector('#f_'+v.missing[0]).scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  document.getElementById('formWarn').style.display='none';
+  saveClient();
+  const txt = buildOrderText();
+  const enc = encodeURIComponent(txt);
+  window.open(`https://wa.me/${VALMIR.whatsapp}?text=${enc}`, '_blank');
+  toast('Abrindo WhatsApp com o pedido...', 'success');
+}
+
+function sendEmail(){
+  if(!checkMinimo()) return;
+  const v = validateClient();
+  if(!v.ok){
+    const warn = document.getElementById('formWarn');
+    warn.style.display='flex';
+    warn.className='warn-msg';
+    warn.textContent = '⚠️ Preencha os campos obrigatórios: ' + v.missing.join(', ');
+    document.querySelector('#f_'+v.missing[0]).scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  document.getElementById('formWarn').style.display='none';
+  saveClient();
+  const txt = buildOrderText();
+  const c = getClient();
+  const subj = `Pedido Labotrat - ${c.empresa} - ${new Date().toLocaleDateString('pt-BR')}`;
+  // Strip markdown bold for plain email
+  const plain = txt.replace(/\*/g,'');
+  const to = `${VALMIR.email},${c.email}`;
+  const url = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(plain)}`;
+  window.location.href = url;
+  toast('Abrindo seu cliente de e-mail...', 'success');
+}
+
+// ====== ADMIN ======
+function openAdmin(){
+  document.getElementById('adminModal').classList.add('open');
+  document.getElementById('loginArea').style.display='block';
+  document.getElementById('panelArea').style.display='none';
+  document.getElementById('adminPass').value='';
+  setTimeout(()=>document.getElementById('adminPass').focus(),100);
+}
+function closeAdmin(){ document.getElementById('adminModal').classList.remove('open'); }
+
+function showPanel(){
+  document.getElementById('loginArea').style.display='none';
+  document.getElementById('panelArea').style.display='block';
+  document.getElementById('statProds').textContent = state.produtos.length;
+  document.getElementById('statLines').textContent = new Set(state.produtos.map(p=>p.linha)).size;
+  document.getElementById('statPhotos').textContent = Object.keys(state.fotos).length;
+}
+
+function tryLogin(){
+  const pw = document.getElementById('adminPass').value;
+  if(pw===ADMIN_PASSWORD){
+    showPanel();
+    toast('Bem-vindo ao painel admin!', 'success');
+  } else {
+    toast('Senha incorreta', 'error');
+  }
+}
+
+async function importExcel(file){
+  const st = document.getElementById('excelStatus');
+  st.className='admin-status show';
+  st.textContent='⏳ Lendo planilha...';
+  try{
+    const data = await file.arrayBuffer();
+    const wb = XLSX.read(data,{type:'array'});
+    const sheet = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(sheet,{header:1,defval:null});
+    const novos = [];
+    let currentLinha='';
+    for(let i=0;i<rows.length;i++){
+      const r = rows[i];
+      if(!r) continue;
+      const c2=r[1], c3=r[2], c4=r[3], c5=r[4], c6=r[5], c8=r[7];
+      if(typeof c2==='string' && c2 && !c3 && /LINHA|CATEGORIA/i.test(c2)){
+        currentLinha = c2.trim();
+      }
+      if((typeof c2==='number') && c3 && c6){
+        novos.push({
+          codigo: parseInt(c2),
+          ean: String(c3),
+          linha: (c4||'Outros').toString().replace('Derno','Dermo').replace('Vai&Brilha','Vai & Brilha'),
+          qt_cx: parseInt(c5)||1,
+          nome: String(c6).trim(),
+          preco: parseFloat(c8)||0,
+          categoria: currentLinha
+        });
+      }
+    }
+    if(novos.length<10) throw new Error('Formato inesperado (poucos produtos detectados)');
+    // dedupe
+    const seen={};
+    novos.forEach(p=>{if(!seen[p.codigo]) seen[p.codigo]=p;});
+    state.produtos = Object.values(seen);
+    saveProducts();
+    renderFilters();
+    renderProducts();
+    renderSummary();
+    showPanel();
+    st.className='admin-status show';
+    st.textContent = `✅ ${state.produtos.length} produtos importados com sucesso!`;
+  }catch(e){
+    st.className='admin-status show err';
+    st.textContent = '❌ Erro: ' + e.message;
+  }
+}
+
+async function importPhotos(files){
+  const st = document.getElementById('photosStatus');
+  st.className='admin-status show';
+  st.textContent=`⏳ Processando ${files.length} fotos...`;
+  let ok=0, fail=0;
+  for(const f of files){
+    try{
+      const name = f.name.replace(/\.[^.]+$/,'');
+      const cod = parseInt(name);
+      if(isNaN(cod)){ fail++; continue; }
+      if(!getProd(cod)){ fail++; continue; }
+      // Compress to dataURL
+      const dataUrl = await compressImage(f, 600, 0.82);
+      state.fotos[cod] = dataUrl;
+      ok++;
+    }catch(e){ fail++; }
+  }
+  savePhotos();
+  renderProducts();
+  showPanel();
+  st.className='admin-status show';
+  st.textContent = `✅ ${ok} fotos importadas${fail?` · ${fail} ignoradas (nome inválido ou código inexistente)`:''}`;
+}
+
+function compressImage(file, maxSize=600, quality=0.82){
+  return new Promise((resolve,reject)=>{
+    const img = new Image();
+    const reader = new FileReader();
+    reader.onload = e=>{
+      img.onload = ()=>{
+        let {width,height} = img;
+        if(width>height && width>maxSize){ height=height*maxSize/width; width=maxSize; }
+        else if(height>maxSize){ width=width*maxSize/height; height=maxSize; }
+        const canvas = document.createElement('canvas');
+        canvas.width=width; canvas.height=height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle='#fff'; ctx.fillRect(0,0,width,height);
+        ctx.drawImage(img,0,0,width,height);
+        resolve(canvas.toDataURL('image/jpeg',quality));
+      };
+      img.onerror = reject;
+      img.src = e.target.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function exportBackup(){
+  const data = {
+    produtos: state.produtos,
+    fotos: state.fotos,
+    exportedAt: new Date().toISOString(),
+    version: 1
+  };
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `labotrat-catalogo-backup-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('Backup baixado!', 'success');
+}
+
+async function importBackup(file){
+  const st = document.getElementById('importStatus');
+  st.className='admin-status show';
+  try{
+    const txt = await file.text();
+    const data = JSON.parse(txt);
+    if(!Array.isArray(data.produtos)) throw new Error('Arquivo inválido');
+    state.produtos = data.produtos;
+    state.fotos = data.fotos || {};
+    saveProducts(); savePhotos();
+    renderFilters(); renderProducts(); renderSummary(); showPanel();
+    st.textContent = `✅ Restaurado: ${state.produtos.length} produtos + ${Object.keys(state.fotos).length} fotos`;
+  }catch(e){
+    st.className='admin-status show err';
+    st.textContent = '❌ Erro: ' + e.message;
+  }
+}
+
+function resetToDefaults(){
+  if(!confirm('Tem certeza? Isso vai remover todas as edições (produtos importados e fotos).')) return;
+  localStorage.removeItem(PRODS_KEY);
+  localStorage.removeItem(PHOTOS_KEY);
+  state.produtos = PRODUTOS_PADRAO;
+  state.fotos = {};
+  renderFilters(); renderProducts(); renderSummary(); showPanel();
+  toast('Catálogo resetado para o padrão', 'success');
+}
+
+// ====== BINDINGS ======
+document.addEventListener('DOMContentLoaded', ()=>{
+  loadState();
+  renderFilters();
+  renderProducts();
+  renderSummary();
+
+  // Search
+  let searchTimeout;
+  document.getElementById('search').oninput = (e)=>{
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(()=>{ state.busca = e.target.value; renderProducts(); },150);
+  };
+
+  // Masks
+  document.getElementById('f_cnpj').oninput = e=>{e.target.value = maskCNPJ(e.target.value)};
+  document.getElementById('f_telefone').oninput = e=>{e.target.value = maskTel(e.target.value)};
+
+  // Save client on change
+  ['f_nome','f_empresa','f_cnpj','f_telefone','f_email','f_cidade'].forEach(id=>{
+    document.getElementById(id).addEventListener('change', saveClient);
+    document.getElementById(id).addEventListener('blur', saveClient);
+  });
+
+  // Action buttons
+  document.getElementById('btnWa').onclick = sendWhatsApp;
+  document.getElementById('btnEmail').onclick = sendEmail;
+  document.getElementById('btnClear').onclick = ()=>{
+    if(Object.keys(state.pedido).length===0) return;
+    if(!confirm('Limpar todo o pedido?')) return;
+    state.pedido={}; saveOrder(); renderProducts(); renderSummary();
+    toast('Pedido limpo');
+  };
+
+  // Cart FAB scrolls to summary
+  document.getElementById('cartFab').onclick = ()=>{
+    document.querySelector('.summary').scrollIntoView({behavior:'smooth',block:'start'});
+  };
+
+  // Admin
+  document.getElementById('adminTrigger').onclick = (e)=>{e.preventDefault(); openAdmin();};
+  document.getElementById('modalClose').onclick = closeAdmin;
+  document.getElementById('adminModal').onclick = e=>{if(e.target.id==='adminModal') closeAdmin();};
+  document.getElementById('btnLogin').onclick = tryLogin;
+  document.getElementById('adminPass').onkeydown = e=>{if(e.key==='Enter') tryLogin();};
+  document.getElementById('excelInput').onchange = e=>{if(e.target.files[0]) importExcel(e.target.files[0]);};
+  document.getElementById('photosInput').onchange = e=>{if(e.target.files.length) importPhotos(e.target.files);};
+  document.getElementById('btnExport').onclick = exportBackup;
+  document.getElementById('importInput').onchange = e=>{if(e.target.files[0]) importBackup(e.target.files[0]);};
+  document.getElementById('btnReset').onclick = resetToDefaults;
+
+  // Hidden admin shortcut: Ctrl+Shift+A
+  document.addEventListener('keydown', e=>{
+    if(e.ctrlKey && e.shiftKey && e.key==='A'){ e.preventDefault(); openAdmin(); }
+  });
+
+  // Disable text editing on protected fields (defensive)
+  document.addEventListener('keydown', e=>{
+    const tgt = e.target;
+    if(tgt.classList && tgt.classList.contains('no-edit') && !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){
+      e.preventDefault();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
