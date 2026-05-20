@@ -420,10 +420,10 @@ footer .copy{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:18px;padding
 
         <div class="admin-panel">
           <h3>🖼️ Gerenciar fotos dos produtos</h3>
-          <p style="font-size:.82rem;color:var(--ink-soft);line-height:1.55">As fotos são lidas da pasta <code style="background:#fff;padding:1px 6px;border-radius:4px;border:1px solid var(--line)">fotos/</code> ao lado do <code style="background:#fff;padding:1px 6px;border-radius:4px;border:1px solid var(--line)">index.html</code>. Para <strong>adicionar/trocar</strong> uma foto:</p>
+          <p style="font-size:.82rem;color:var(--ink-soft);line-height:1.55">As fotos são lidas da mesma pasta onde está o <code style="background:#fff;padding:1px 6px;border-radius:4px;border:1px solid var(--line)">index.html</code> (raiz do repositório). Para <strong>adicionar/trocar</strong> uma foto:</p>
           <ol style="font-size:.82rem;color:var(--ink-soft);margin:8px 0 8px 22px;line-height:1.6">
             <li>Nomeie o arquivo como <strong>CÓDIGO.jpg</strong> (ex: <code style="background:#fff;padding:0 4px;border-radius:3px">179.jpg</code>)</li>
-            <li>Coloque na pasta <strong>fotos/</strong> do projeto</li>
+            <li>Coloque no diretório raiz do projeto, ao lado do <code>index.html</code></li>
             <li>Faça <em>commit</em> no GitHub Pages para publicar</li>
           </ol>
           <p style="font-size:.78rem;color:var(--ink-soft);margin-top:6px"><strong>Dica:</strong> use imagens JPG até 600px e ~50KB para carregamento rápido no celular.</p>
@@ -580,7 +580,7 @@ function renderProducts(){
     if(fotoLocal){
       imgHtml = `<img src="${fotoLocal}" alt="${p.nome}" oncontextmenu="return false" loading="lazy">`;
     } else if(temArquivo){
-      imgHtml = `<img src="fotos/${p.codigo}.jpg" alt="${p.nome}" oncontextmenu="return false" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.placeholder')?.style.removeProperty('display');">`;
+      imgHtml = `<img src="${p.codigo}.jpg" alt="${p.nome}" oncontextmenu="return false" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.placeholder')?.style.removeProperty('display');">`;
     } else {
       imgHtml = placeholderFor(p);
     }
